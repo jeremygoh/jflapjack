@@ -8,11 +8,11 @@
 				// dynamically get sizes
 	      $(document).ready(function() {
 	     		postWidth = $('#post-<%= post.id %>').width();
-	     		newWidth = postWidth* <%= get_size_mulitplier(post) %>
+	     		newWidth = postWidth* <%= get_size_multiplier(post) %>
 	     		console.log(newWidth)
 	     		$('#post-<%= post.id %>').width(newWidth);
 					postHeight = $('#post-<%= post.id %>').height();
-	     		newHeight = postWidth* <%= get_size_mulitplier(post) %>
+	     		newHeight = postWidth* <%= get_size_multiplier(post) %>
 	     		console.log(newHeight)
 	     		$('#post-<%= post.id %>').height(newHeight);
 				});
