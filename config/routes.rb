@@ -2,7 +2,14 @@ Flapjack::Application.routes.draw do
 
   devise_for :users
 
-  resources :links
+  #notes
+  get "notes/new"
+  post "notes", to: "notes#create", as: :notes
+
+  #links
+  get "links/new"
+  post "links", to: "links#create", as: :links
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

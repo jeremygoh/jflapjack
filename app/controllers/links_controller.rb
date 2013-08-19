@@ -4,17 +4,9 @@ class LinksController < ApplicationController
   end
 
   def create
+    @link = Link.new(params[:link].permit(:caption, :url))
+    @link.save
+    redirect_to '/'
   end
 
-  def index
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end
