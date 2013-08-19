@@ -1,14 +1,25 @@
-<% type = post.type %>
-<div class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type.downcase  %>" >
+<% type = post.type.downcase! %>
+<div class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type %>" >
+		<!-- post caption -->
 		<div class = 'post-caption' >
 			<%= post.caption %>
 		</div>
-
-		<div class = "<%= 'post-'+type.downcase  %>">
-			<%= post.body %>
+		<!-- post body depending on type -->
+		<div class = "<%= 'post-'+type %>">
+			<% if type == "note" %>
+				<%= post.body %>
+			<% elsif type == "link" %>
+				<a href="<%= post.url %>"><%= post.url %></a>
+			<% elsif type == "photo" %>
+				<div class =  "<%= type %>">
+					<%= image_tag post.photo.url(:square) %>
+				</div>
+			<% else %>
+				<%# post.video %>
+			<% end %>
 		</div>
-
+		<!-- post comments -->
 		<div class = 'post-last-comment' >
-			<%= "post.comment" %>
+			<%= "post.comment" %>	
 		</div>
 </div>
