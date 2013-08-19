@@ -1,5 +1,5 @@
 <% type = post.type.downcase! %>
-<div class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type %>" >
+<div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type %>" >
 		<!-- post caption -->
 		<div class = 'post-caption' >
 			<%= post.caption %>
@@ -22,4 +22,7 @@
 		<div class = 'post-last-comment' >
 			<%= "post.comment" %>	
 		</div>
+		<h1><%= get_size_mulitplier(post) %></h1>
 </div>
+
+

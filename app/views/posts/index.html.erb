@@ -3,3 +3,19 @@
 		<%= render 'post', post: post %>
 	<% end %>
 </div>
+<% @posts.each do |post| %>
+	<script>
+				// dynamically get sizes
+	      $(document).ready(function() {
+	     		postWidth = $('#post-<%= post.id %>').width();
+	     		newWidth = postWidth* <%= get_size_mulitplier(post) %>
+	     		console.log(newWidth)
+	     		$('#post-<%= post.id %>').width(newWidth);
+					postHeight = $('#post-<%= post.id %>').height();
+	     		newHeight = postWidth* <%= get_size_mulitplier(post) %>
+	     		console.log(newHeight)
+	     		$('#post-<%= post.id %>').height(newHeight);
+				});
+				//#post-<%= post.id %>
+	</script>
+	<% end %>
