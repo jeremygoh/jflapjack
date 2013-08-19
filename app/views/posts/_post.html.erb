@@ -1,14 +1,14 @@
 <% type = post.type %>
 <div class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type.downcase  %>" >
 		<div class = 'post-caption' >
-			<h2 class="name"><%= post.caption %></h2>
+			<%= post.caption %>
 		</div>
 
 		<div class = "<%= 'post-'+type.downcase  %>">
-			<h3 class="symbol"><%= post.body %></h3>
+			<%= post.body %>
 		</div>
 
 		<div class = 'post-last-comment' >
-			<h3 class="number"><%= "post.comment" %></h3>
+			<%= "post.comment" %>
 		</div>
 </div>
