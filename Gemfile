@@ -19,6 +19,9 @@ gem 'pg'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'devise'
+
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 group :development, :test do
   gem 'rspec-rails'
   #gem 'guard-rspec'
@@ -39,7 +42,7 @@ group :production do
 end
 
 gem 'devise'
-#gem 'paperclip'
+gem 'paperclip'
 #gem 'aws-s3'
 #gem 'aws-sdk'
 # Use jquery as the JavaScript library

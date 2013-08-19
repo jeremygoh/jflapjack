@@ -5,7 +5,10 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(params[:note].permit(:caption, :body))
-    @note.save
-    redirect_to '/'
+    if @note.save
+      redirect_to '/'
+    else
+      render "new"
+    end
   end
 end

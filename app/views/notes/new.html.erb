@@ -1,3 +1,8 @@
+<% @note.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+<% end %>
+
+<p>New Note</p>
 <%= form_for @note do |f| %>
 
 <%= f.label :caption %>

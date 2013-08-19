@@ -1,7 +1,12 @@
+<% @link.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+<% end %>
+
+<p>New Link</p>
 <%= form_for @link do |f| %>
 <%= f.label :caption %>
 <%= f.text_field :caption %>
 <%= f.label :url %>
-<%= f.url_field :url %>
+<%= f.url_field :url, value: "http://" %>
 <%= f.submit %>
 <% end %>

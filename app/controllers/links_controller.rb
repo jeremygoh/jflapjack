@@ -5,8 +5,11 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(params[:link].permit(:caption, :url))
-    @link.save
-    redirect_to '/'
+    if @link.save
+      redirect_to '/'
+    else
+      render "new"
+    end
   end
 
 end
