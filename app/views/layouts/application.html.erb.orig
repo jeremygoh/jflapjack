@@ -7,6 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<<<<<<< HEAD
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= render 'layouts/filter' %>
+=======
 <%= bootstrap_flash %>
 
 <!-- navbar -->
@@ -44,8 +49,10 @@
   </div>
 </div>
 
-<%= render 'layouts/filter' %>
+<div id="container" class="container-fluid">
+>>>>>>> 9931a7cea261a436e9bafd8bb233c8c87dcd9841
 <%= yield %>
+</div>
 
 <script>
  var $container = $('#container');

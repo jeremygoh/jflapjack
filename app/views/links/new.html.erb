@@ -2,11 +2,12 @@
     <p><%= message %></p>
 <% end %>
 
-<p>New Link</p>
+<h2>Create New Link</h2>
+
 <%= form_for @link do |f| %>
-<%= f.label :caption %>
-<%= f.text_field :caption %>
-<%= f.label :url %>
-<%= f.url_field :url, value: "http://" %>
-<%= f.submit %>
+    <%= f.label :caption %>
+    <%= f.text_field :caption %>
+    <%= f.label :url, "URL" %>
+    <%= f.url_field :url, value: "http://" %>
+    <%= f.submit %>
 <% end %>
