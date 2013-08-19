@@ -1,3 +1,5 @@
-<% @posts.each do |post| %>
-<h1> <%= post %> </h1>
-<% end %>
+<div id="container" class="super-list variable-sizes clearfix">
+	<% @posts.each do |post| %>
+		<%= render 'post', post: post %>
+	<% end %>
+</div>
