@@ -8,9 +8,24 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+/db/test.sqlite3
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+bundler_stubs/
+.rvmrc
+/.bundle
+/vendor/bundle
+/coverage/
+/spec/tmp/*
+**.orig
