@@ -18,29 +18,30 @@ gem 'pg'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'devise'
 group :development, :test do
   gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'terminal-notifier-guard'
-  gem 'shoulda-matchers'
-  gem 'factory_girl'
-  gem 'websocket-rails'
+  #gem 'guard-rspec'
+  #gem 'terminal-notifier-guard'
+  #gem 'shoulda-matchers'
+  #gem 'factory_girl'
+  #gem 'websocket-rails'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  #gem 'capybara'
+  #gem 'selenium-webdriver'
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pusher'
+  #gem 'rails_12factor'
+  #gem 'pusher'
 end
 
 gem 'devise'
-gem 'paperclip'
-gem  'aws-s3'
-gem 'aws-sdk'
+#gem 'paperclip'
+#gem 'aws-s3'
+#gem 'aws-sdk'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

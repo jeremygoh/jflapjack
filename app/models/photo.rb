@@ -1,0 +1,3 @@
+class Photo < Post
+
+end
