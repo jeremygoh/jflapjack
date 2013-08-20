@@ -106,9 +106,9 @@ body {
 }
 
 .post.post-video    { background: #333; background: hsl(   0, 100%, 50%); }
-.post.post-photo  { background: #666; background: hsl(  36, 100%, 50%); }
-.post.post-link      { background: #999; background: hsl(  72, 100%, 50%); }
-.post.post-note     { background: #fff; background: hsl( 108, 100%, 50%); }
+.post.post-photo    { background: #666; background: hsl(  36, 100%, 50%); }
+.post.post-link     { background: #999; background: hsl( 180, 70%, 50%); }
+.post.post-note     { background: #fff; background: hsl( 108, 80%, 50%); }
 
 
 .post * {
