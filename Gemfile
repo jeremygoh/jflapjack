@@ -43,8 +43,8 @@ end
 
 gem 'devise'
 gem 'paperclip'
-#gem 'aws-s3'
-#gem 'aws-sdk'
+gem 'aws-s3'
+gem 'aws-sdk'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
