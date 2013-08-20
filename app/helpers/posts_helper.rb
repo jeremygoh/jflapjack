@@ -1,9 +1,9 @@
 module PostsHelper
 	def get_size_multiplier(post)
-  	(post.time * 0.000011574).round(3)
+  	(seconds_to_end(post) * 0.000011574).round(3)
   end
 
   def seconds_to_end(post)
-  	Time.now - (post.created_at + time)
+  	(post.created_at + post.time) - Time.now 
   end
 end
