@@ -1,5 +1,6 @@
 <div id="iso-container" class="super-list variable-sizes clearfix container-fluid">
-	<% @posts.each do |post| %>
+	<% @posts.each do |post| %> 
+		<%= seconds_to_end(post) %>
 		<%= render 'post', post: post %>
 	<% end %>
 </div>
