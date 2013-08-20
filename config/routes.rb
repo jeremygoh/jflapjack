@@ -11,9 +11,9 @@ Flapjack::Application.routes.draw do
   post "links", to: "links#create", as: :links
 
   #photos
-  get "photos/new"
-  post "photos", to: "photos#create", as: :photos
-
+  # get "photos/new"
+  # post "photos", to: "photos#create", as: :photos
+  resources :photos
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
