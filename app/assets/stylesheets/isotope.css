@@ -89,7 +89,7 @@ body {
 
 .post {
   width: 300px;
-  height: 500px;
+  /*height: 500px;*/
   margin: 5px;
   float: left;
   overflow: hidden;
@@ -122,6 +122,10 @@ body {
   font-size: 1.0em;
   line-height: 1.0em;
   color: #FFF;
+}
+
+.caption{
+  /*position:absolute;*/
 }
 .post.large .caption {
   font-size: 2.5em;
@@ -160,6 +164,7 @@ body {
   color: hsla(0,0%,0%,.5);
   left: 0.5em;
   top: 10em;
+
 }
 
 /**** Photo demo ****/
@@ -197,20 +202,12 @@ text-align: center;
 
 .variable-sizes .post.width2 { width: 230px; }
 
-.variable-sizes .post.height2 { height: 340px; }
+.variable-sizes .post.height2 { height: 430px; }
 
 .variable-sizes .post.width2.height2 {
-  font-size: 2.0em;
+  /*font-size: 2.0em;*/
 }
 
-.post.large,
-.variable-sizes .post.large,
-.variable-sizes .post.large.width2.height2 {
-  font-size: 1.2em;
-  width: 350px;
-  height: 350px;
-  z-index: 100;
-}
 
 .clickable .post:hover {
   cursor: pointer;
@@ -365,7 +362,7 @@ text-align: center;
 /**** Horizontal ****/
 
 .horizontal #iso-container {
-  height: 80%;
+  /*height: 400px;*/
 }
 
 #copy {

@@ -996,7 +996,7 @@
 
     _masonryGetContainerSize : function() {
       var containerHeight = Math.max.apply( Math, this.masonry.colYs );
-      return { height: containerHeight };
+      return { height: containerHeight };  //KIPS kips
     },
 
     _masonryResizeChanged : function() {
