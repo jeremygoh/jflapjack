@@ -21,8 +21,9 @@
 		<!-- post comments -->
 		<div id="comment-<%= post.id %>" class = 'post-last-comment' >
 			<form method="post" action="/comments" class="post-comments">
-				<input type="hidden" name="comment[:post_id]" value="<%= post.id %>">
-				<input type="text" name="comment[:body]" placeholder="<%= post.last_comment%>">
+				<%= token_tag nil %>
+				<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
+				<input type="text" name="comment[body]" placeholder="<%= post.last_comment%>">
 				<input type="image" value=" ">
 			</form>
 		</div>
