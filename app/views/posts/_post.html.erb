@@ -1,11 +1,11 @@
 <% type = post.type.downcase! %>
-<div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> feature width2 height2' data-category="<%= type %>" >
+<div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> width2 height2' data-category="<%= type %>" >
 		<!-- post caption -->
-		<div class = 'post-caption' >
+		<div id="caption-<%= post.id %>" class = 'post-caption' >
 			<%= post.caption %>
 		</div>
 		<!-- post body depending on type -->
-		<div class = "<%= 'post-'+type %>">
+		<div id="body-<%= post.id %>" class = "<%= 'post-'+type %>">
 			<% if type == "note" %>
 				<%= post.body %>
 			<% elsif type == "link" %>
@@ -19,10 +19,10 @@
 			<% end %>
 		</div>
 		<!-- post comments -->
-		<div class = 'post-last-comment' >
+		<div id="comment-<%= post.id %>" class = 'post-last-comment' >
 			<%= "post.comment" %>	
 		</div>
-		<h1><%= get_size_mulitplier(post) %></h1>
+		<!-- <h1><%= get_size_mulitplier(post) %></h1> -->
 </div>
 
 

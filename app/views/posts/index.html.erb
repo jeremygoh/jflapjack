@@ -7,15 +7,41 @@
 	<script>
 				// dynamically get sizes
 	      $(document).ready(function() {
+	      	scale = <%= get_size_mulitplier(post) %>
 	     		postWidth = $('#post-<%= post.id %>').width();
-	     		newWidth = postWidth* <%= get_size_mulitplier(post) %>
-	     		console.log(newWidth)
-	     		$('#post-<%= post.id %>').width(newWidth);
+	     		newWidth = postWidth*scale
 					postHeight = $('#post-<%= post.id %>').height();
-	     		newHeight = postWidth* <%= get_size_mulitplier(post) %>
-	     		console.log(newHeight)
+	     		newHeight = postWidth*scale
+	     		$('#post-<%= post.id %>').width(newWidth);
 	     		$('#post-<%= post.id %>').height(newHeight);
+	     		$('#caption-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
+	     		$('#body-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
+	     		$('#comment-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
+	     		 $container.isotope( 'reLayout' )
+
 				});
 				//#post-<%= post.id %>
+
+
+
+
+// dynamically get sizes
+	   //    $(document).ready(function() {
+	   //   		postWidth = $('#post-<%= post.id %>').width();
+	   //   		newWidth = postWidth* <%= get_size_mulitplier(post) %>
+				// 	postHeight = $('#post-<%= post.id %>').height();
+	   //   		newHeight = postWidth* <%= get_size_mulitplier(post) %>
+	   //   		//console.log(newWidth)
+	   //   		//console.log(<%= get_size_mulitplier(post) %>)
+	   //   		$('#post-<%= post.id %>').css("transform","scale(<%= get_size_mulitplier(post) %>,<%= get_size_mulitplier(post) %>)");
+	   //   		//$('#post-<%= post.id %>').width(newWidth);
+	   //   		//console.log(newWidth)
+	   //   		//console.log(newHeight)
+	   //   		//$('#post-<%= post.id %>').height(newHeight);
+				// });
+				// //#post-<%= post.id %>
+
 	</script>
 	<% end %>
+
+	
