@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+before_action :redirect_if_not_signed_in
 
   def create
     comment = Comment.new(params[:comment].permit(:post_id, :body))

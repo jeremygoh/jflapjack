@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
 
+before_action :redirect_if_not_signed_in
+
     def show
         @photo = Photo.find(params[:id])
     end
@@ -10,6 +12,7 @@ class PhotosController < ApplicationController
 
     def create
         @photo = Photo.new(params[:photo].permit(:caption, :photo))
+        @photo.user = current_user
         if @photo.save
             if params[:photo].blank?
                 redirect_to @photo
@@ -30,7 +33,7 @@ class PhotosController < ApplicationController
         # puts params[:photo].inspect
 
         if !params[:photo].blank?
-          flash[:notice] = "Successfully updated user."
+          flash[:notice] = "Successfully updated photo."
           redirect_to @photo
         else
           render :action => "crop"
