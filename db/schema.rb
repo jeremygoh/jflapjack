@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820094219) do
+ActiveRecord::Schema.define(version: 20130820145627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
-    t.string   "body"
+    t.string   "body",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "user_id",    null: false
+    t.integer  "post_id",    null: false
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.string   "caption"
-    t.string   "type"
+    t.string   "caption",            null: false
+    t.string   "type",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(version: 20130820094219) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "time"
+    t.integer  "user_id",            null: false
   end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20130820094219) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
+    t.string   "username",                            null: false
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
