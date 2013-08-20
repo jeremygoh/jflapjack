@@ -101,6 +101,12 @@ $(function(){
     });
 });
 
+$(function(){    
+    $('div.post').on('mouseout', function(){
+        $(this).find("input[type='text']").blur();
+    });
+});
+
 </script>
 </body>
 </html>
