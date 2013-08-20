@@ -81,15 +81,15 @@ body {
   height: 100%;
 }
 
-#container {
+#iso-container {
   border: 1px solid #999;
   padding: 5px;
   margin-bottom: 20px;
 }
 
 .post {
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 500px;
   margin: 5px;
   float: left;
   overflow: hidden;
@@ -106,28 +106,28 @@ body {
 }
 
 .post.post-video    { background: #333; background: hsl(   0, 100%, 50%); }
-.post.post-photo  { background: #666; background: hsl(  36, 100%, 50%); }
-.post.post-link      { background: #999; background: hsl(  72, 100%, 50%); }
-.post.post-note     { background: #fff; background: hsl( 108, 100%, 50%); }
+.post.post-photo    { background: #666; background: hsl(  36, 100%, 50%); }
+.post.post-link     { background: #999; background: hsl( 180, 70%, 50%); }
+.post.post-note     { background: #fff; background: hsl( 108, 80%, 50%); }
 
 
 .post * {
-  position: absolute;
+  /*position: absolute;*/
   margin: 0;
 }
 
-.post .post-caption {
+.post .caption {
   left: 0.2em;
   top: 0.3em;
   font-size: 1.0em;
   line-height: 1.0em;
   color: #FFF;
 }
-.post.large .post-caption {
+.post.large .caption {
   font-size: 2.5em;
 }
 
-.post.fake .post-caption {
+.post.fake .caption {
   color: #000;
 }
 
@@ -138,17 +138,17 @@ body {
 }
 
 
-.post .post-link {
+.post .post-body-link {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
-.post .post-note {
+.post .post-body-note {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
-.post .post-video {
+.post .post-body-video {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
@@ -163,25 +163,27 @@ body {
 }
 
 /**** Photo demo ****/
-.post-photo{
+#crop-preview.preview{
+  max-width: none !important;
+}
+.post-body-photo{
+text-align: center;
+}
+
+.post-body-photo .photo {
+  /*width: 250px;*/
+  margin-top: 0.8em;
+  /*float: left;*/
+  /*padding-top:60px;
+  padding-left:20px;*/
+
 
 }
 
-.post-photo .photo {
-  width: 250px;
-  margin: 5px;
-  float: left;
-  padding-top:60px;
-  padding-left:20px;
-
-
-}
-
-.post-photo .photo img {
+.post-body-photo .photo img {
   width: auto;
   height: auto;
-  min-width: 100%;
-  max-width: 100%;
+
 }
 
 #content {
@@ -193,9 +195,9 @@ body {
 }
 
 
-.variable-sizes .post.width2 { width: 320px; }
+.variable-sizes .post.width2 { width: 230px; }
 
-.variable-sizes .post.height2 { height: 320px; }
+.variable-sizes .post.height2 { height: 340px; }
 
 .variable-sizes .post.width2.height2 {
   font-size: 2.0em;
@@ -362,7 +364,7 @@ body {
 
 /**** Horizontal ****/
 
-.horizontal #container {
+.horizontal #iso-container {
   height: 80%;
 }
 
@@ -542,135 +544,6 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 
 
 
-/**** Super list ****/
-
-
-/**** Sites using Isotope ****/
-
-/*#sites h2 {
-  display: none;
-  padding: 0.4em;
-  line-height: 32px;
-  margin-bottom: 0.4em;
-  -webkit-transition: background-color 0.8s;
-     -moz-transition: background-color 0.8s;
-       -o-transition: background-color 0.8s;
-          transition: background-color 0.8s;
-}
-
-#sites h2 img {
-  display: inline-block;
-  margin-right: 0.4em;
-  vertical-align: bottom;
-}
-
-#sites h2.loading {
-  background: white;
-  color: #222;
-}
-#sites h2.error {
-  background: red;
-  color: #222;
-}
-
-
-#sites ul {
-  margin: 0;
-}
-
-.super-list .example {
-  list-style: none;
-  float: left;
-  width: 230px;
-  margin: 5px;
-}
-
-.super-list .example a,
-.super-list .example b,
-.super-list .example img {
-  display: block;
-}
-
-.super-list .example img { width: 100%; }
-
-.super-list .example a {
-  background: #1F1E1D;
-}
-
-.super-list .example a:hover {
-  background: white;
-  color: #111;
-}
-
-.super-list .example b { 
-  font-weight: bold;
-  line-height: 1.3em;
-  padding: 3px;
-  padding-top: 8px;
-}
-
-.super-list .link {
-  float: left;
-  position: relative;
-  font-size: 24px;
-  line-height: 1.2em;
-  font-weight: 300;
-  margin: 5px;
-}
-
-.super-list .link {
-  width: 230px;
-  height: 110px;
-}
-
-.super-list .link a {
-  display: block;
-  padding: 10px;
-  padding-left: 65px;
-  height: 90px;
-  background: #1F1E1D;
-  color: #FE5;
-  -webkit-border-radius: 14px;
-     -moz-border-radius: 14px;
-          border-radius: 14px;
-}
-
-.super-list .link a:before {
-  content: '➔';
-  font-size: 70px;
-  position: absolute;
-  top: 30px;
-  left: 5px;
-  -webkit-transform: rotate(90deg);
-     -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-       -o-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
-.super-list .link.away a:before {
-  top: 25px;
-  left: 0px;
-  -webkit-transform: rotate(-45deg);
-     -moz-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-       -o-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.super-list .link a:hover {
-  background: #E58;
-  color: white;
-}
-
-.super-list .feature .name {
-  bottom: auto;
-  top: 140px;
-  left: 18px;
-  font-size: 20px;
-}
-
-*/
 
 /**** Infinite Scroll ****/
 
