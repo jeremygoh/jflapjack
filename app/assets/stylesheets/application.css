@@ -41,20 +41,14 @@ form[class=post-comments] input{
 
 form[class=post-comments] input[type=image]{
   display: none;
-}
-
-
-form[class=post-comments] input[type=text]:focus ~ input[type=image]{
   -webkit-appearance:caret;
-
-  display: inline;
   background-image: url("/submit-button.png");
   background-repeat: no-repeat;
   height: 22px;
   width: 22px;
   margin-left: 228px;
   margin-top: 4px;
-};
+}
 
 
 

@@ -98,12 +98,14 @@ div.post:hover input[type=text]{
 $(function(){    
     $('div.post').on('mouseover', function(){
         $(this).find("input[type='text']").focus();
+        $(this).find("input[type='image']").show();
     });
 });
 
 $(function(){    
     $('div.post').on('mouseout', function(){
         $(this).find("input[type='text']").blur();
+        $(this).find("input[type='image']").hide();
     });
 });
 
