@@ -46,15 +46,20 @@ div.post:hover input[type=text]{
             <li>
               <a href="/notes/new">Create Note</a>
             </li>
-            <li>
-              <a href="/users/sign_up">Sign Up</a>
-            </li>
-            <li>
-              <a href="/users/sign_in">Sign In</a>
-            </li>
-            <li>
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-            </li>
+
+            <% unless current_user %>
+                <li>
+                  <a href="/users/sign_up">Sign Up</a>
+                </li>
+                <li>
+                  <a href="/users/sign_in">Sign In</a>
+                </li>
+            <% else %>
+                <li>
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                </li>
+            <% end %>
+            
           </ul>
         <!-- .nav, .navbar-search, .navbar-form, etc -->
       </div>
