@@ -81,15 +81,15 @@ body {
   height: 100%;
 }
 
-#container {
+#iso-container {
   border: 1px solid #999;
   padding: 5px;
   margin-bottom: 20px;
 }
 
 .post {
-  width: 320px;
-  height: 320px;
+  width: 420px;
+  height: 420px;
   margin: 5px;
   float: left;
   overflow: hidden;
@@ -106,9 +106,9 @@ body {
 }
 
 .post.post-video    { background: #333; background: hsl(   0, 100%, 50%); }
-.post.post-photo  { background: #666; background: hsl(  36, 100%, 50%); }
-.post.post-link      { background: #999; background: hsl(  72, 100%, 50%); }
-.post.post-note     { background: #fff; background: hsl( 108, 100%, 50%); }
+.post.post-photo    { background: #666; background: hsl(  36, 100%, 50%); }
+.post.post-link     { background: #999; background: hsl( 180, 70%, 50%); }
+.post.post-note     { background: #fff; background: hsl( 108, 80%, 50%); }
 
 
 .post * {
@@ -116,18 +116,18 @@ body {
   margin: 0;
 }
 
-.post .post-caption {
+.post .caption {
   left: 0.2em;
   top: 0.3em;
   font-size: 1.0em;
   line-height: 1.0em;
   color: #FFF;
 }
-.post.large .post-caption {
+.post.large .caption {
   font-size: 2.5em;
 }
 
-.post.fake .post-caption {
+.post.fake .caption {
   color: #000;
 }
 
@@ -138,17 +138,17 @@ body {
 }
 
 
-.post .post-link {
+.post .post-body-link {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
-.post .post-note {
+.post .post-body-note {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
-.post .post-video {
+.post .post-body-video {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
@@ -163,11 +163,14 @@ body {
 }
 
 /**** Photo demo ****/
-.post-photo{
+#crop-preview.preview{
+  max-width: none !important;
+}
+.post-body-photo{
 
 }
 
-.post-photo .photo {
+.post-body-photo .photo {
   width: 250px;
   margin: 5px;
   float: left;
@@ -177,11 +180,12 @@ body {
 
 }
 
-.post-photo .photo img {
+.post-body-photo .photo img {
   width: auto;
   height: auto;
   min-width: 100%;
   max-width: 100%;
+
 }
 
 #content {
@@ -193,9 +197,9 @@ body {
 }
 
 
-.variable-sizes .post.width2 { width: 320px; }
+.variable-sizes .post.width2 { width: 420px; }
 
-.variable-sizes .post.height2 { height: 320px; }
+.variable-sizes .post.height2 { height: 420px; }
 
 .variable-sizes .post.width2.height2 {
   font-size: 2.0em;
@@ -362,7 +366,7 @@ body {
 
 /**** Horizontal ****/
 
-.horizontal #container {
+.horizontal #iso-container {
   height: 80%;
 }
 

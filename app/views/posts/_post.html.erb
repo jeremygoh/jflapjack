@@ -1,18 +1,18 @@
 <% type = post.type.downcase! %>
 <div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> width2 height2' data-category="<%= type %>" >
 		<!-- post caption -->
-		<div id="caption-<%= post.id %>" class = 'post-caption' >
+		<div id="caption-<%= post.id %>" class = 'caption' >
 			<%= post.caption %>
 		</div>
 		<!-- post body depending on type -->
-		<div id="body-<%= post.id %>" class = "<%= 'post-'+type %>">
+		<div id="body-<%= post.id %>" class = "<%= 'post-body-'+type %>">
 			<% if type == "note" %>
 				<%= post.body %>
 			<% elsif type == "link" %>
 				<a href="<%= post.url %>"><%= post.url %></a>
 			<% elsif type == "photo" %>
 				<div class =  "<%= type %>">
-					<%= image_tag post.photo.url(:square) %>
+					<%= image_tag post.photo.url(:large) %>
 				</div>
 			<% else %>
 				<%# post.video %>

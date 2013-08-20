@@ -29,6 +29,7 @@ group :development, :test do
   #gem 'shoulda-matchers'
   #gem 'factory_girl'
   #gem 'websocket-rails'
+  gem 'debugger'
 end
 
 group :test do
