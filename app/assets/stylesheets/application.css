@@ -11,3 +11,52 @@
  *= require_self
  *= require_tree .
  */
+
+/*for the index page */
+
+
+form[class=post-comments] input::-webkit-input-placeholder {
+   color: #000 !important;
+}
+
+form[class=post-comments] input:-moz-placeholder { /* Firefox 18- */
+   color: #000 !important;  
+}
+
+form[class=post-comments] input::-moz-placeholder {  /* Firefox 19+ */
+   color: #000!important;  
+}
+
+form[class=post-comments] input:-ms-input-placeholder {  
+   color: #000 !important;  
+}
+
+
+form[class=post-comments] input{
+  background-color: transparent;
+  -webkit-appearance: caret;
+}
+
+
+form[class=post-comments] input[type=image]{
+  display: none;
+}
+
+
+form[class=post-comments] input[type=text]:focus ~ input[type=image]{
+  -webkit-appearance:caret;
+
+  display: inline;
+  background-image: url("/submit-button.png");
+  background-repeat: no-repeat;
+  height: 22px;
+  width: 22px;
+  margin-left: 228px;
+  margin-top: 4px;
+};
+
+
+
+
+
+
