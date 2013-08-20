@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
+
+  has_many :comments
   
   def email_required?
     false
