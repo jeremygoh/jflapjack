@@ -7,7 +7,7 @@
 	<script>
 				// dynamically get sizes
 	      $(document).ready(function() {
-	      	scale = <%= get_size_mulitplier(post) %>
+	      	scale = <%= get_size_multiplier(post) %>
 	     		postWidth = $('#post-<%= post.id %>').width();
 	     		newWidth = postWidth*scale
 					postHeight = $('#post-<%= post.id %>').height();
@@ -28,12 +28,12 @@
 // dynamically get sizes
 	   //    $(document).ready(function() {
 	   //   		postWidth = $('#post-<%= post.id %>').width();
-	   //   		newWidth = postWidth* <%= get_size_mulitplier(post) %>
+	   //   		newWidth = postWidth* <%= get_size_multiplier(post) %>
 				// 	postHeight = $('#post-<%= post.id %>').height();
-	   //   		newHeight = postWidth* <%= get_size_mulitplier(post) %>
+	   //   		newHeight = postWidth* <%= get_size_multiplier(post) %>
 	   //   		//console.log(newWidth)
-	   //   		//console.log(<%= get_size_mulitplier(post) %>)
-	   //   		$('#post-<%= post.id %>').css("transform","scale(<%= get_size_mulitplier(post) %>,<%= get_size_mulitplier(post) %>)");
+	   //   		//console.log(<%= get_size_multiplier(post) %>)
+	   //   		$('#post-<%= post.id %>').css("transform","scale(<%= get_size_multiplier(post) %>,<%= get_size_multiplier(post) %>)");
 	   //   		//$('#post-<%= post.id %>').width(newWidth);
 	   //   		//console.log(newWidth)
 	   //   		//console.log(newHeight)
