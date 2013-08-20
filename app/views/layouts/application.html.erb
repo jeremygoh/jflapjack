@@ -93,6 +93,14 @@ div.post:hover input[type=text]{
 
 
 
+//hover activates cursor but doesn't go away until next box
+
+$(function(){    
+    $('div.post').on('mouseenter', function(){
+        $(this).find("input[type='text']").focus();
+    });
+});
+
 </script>
 </body>
 </html>
