@@ -14,10 +14,12 @@
 	     		newHeight = postHeight*scale
 	     		$('#post-<%= post.id %>').width(newWidth);
 	     		$('#post-<%= post.id %>').height(newHeight);
+	     		//$('#post-<%= post.id %>').css({height: 'auto'});
 	     		$('#caption-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
-	     		$('#body-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
+	     		$('#body-<%= post.id %>.post-body-note').css("transform","scale("+scale+","+scale+")");
+	     		$('#body-<%= post.id %>.post-last-comment').css("transform","scale("+scale+","+scale+")");
+
 	     		$('#comment-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
-	     		 $container.isotope( 'reLayout' )
 
 				});
 				//#post-<%= post.id %>
@@ -25,5 +27,13 @@
 
 	</script>
 	<% end %>
-
+	<script>
+		$(window).on('load', function(){
+			setTimeout(function() {
+	 			$(".post").css({height: 'auto'});
+	   		$container.isotope( 'reLayout' );
+	   	}, 100);
+   		// alert('hi');
+		});
+	</script>
 	
