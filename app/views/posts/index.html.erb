@@ -11,7 +11,7 @@
 	     		postWidth = $('#post-<%= post.id %>').width();
 	     		newWidth = postWidth*scale
 					postHeight = $('#post-<%= post.id %>').height();
-	     		newHeight = postWidth*scale
+	     		newHeight = postHeight*scale
 	     		$('#post-<%= post.id %>').width(newWidth);
 	     		$('#post-<%= post.id %>').height(newHeight);
 	     		$('#caption-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
