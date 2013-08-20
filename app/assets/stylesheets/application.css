@@ -56,11 +56,6 @@ form[class=post-comments] input[type=text]:focus ~ input[type=image]{
 };
 
 
-$(function(){    
-    $('div.post').on('mouseenter', function(){
-        $(this).find("input[type='text']").focus();
-    });
-});
 
 
 
