@@ -10,11 +10,17 @@ after_update :reprocess_photo, :if => :cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
   
+  # def photo_geometry(style = :original)
+  #   @geometry ||= {}
+  #   @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+  # end
+  
   def photo_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+    photo_path = (photo.options[:storage] == :s3) ? photo.url(style) : photo.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo_path)
   end
-  
+
   private
   
   def reprocess_photo
