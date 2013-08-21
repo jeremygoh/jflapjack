@@ -9,7 +9,11 @@
 			<% if type == "note" %>
 				<%= post.body %>
 			<% elsif type == "link" %>
-				<a href="<%= post.url %>"><%= post.url %></a>
+				<% if post.thumbnail != nil %>
+					<a href="<%= post.url %>"><%= image_tag(post.thumbnail) %></a>
+				<% else %>
+					<a href="<%= post.url %>"><%= post.url %></a>
+				<% end %>
 			<% elsif type == "photo" %>
 				<div class =  "<%= type %>">
 					<%= image_tag post.photo.url(:large) %>

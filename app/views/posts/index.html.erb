@@ -8,13 +8,16 @@
 <div id="feed">
 	<ul>
 <% @last_comments.each do |comment| %>
-	<li><a href="/posts/<%= comment.post.id %>"><%= comment.body %></a> | <%= comment.user.id %></li>
+	<li><a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>"><%= comment.body %></a> | <%= comment.user.id %></li>
 <% end %>
 	</ul>
 </div>
 
 <div id="feed-post">
 </div>
+<!-- <a>ksjdhfkjsdfhkdjs</a> -->
+<%# object =  LinkThumbnailer.generate("http://zerply.com") %>
+<%# object.images %>
 
 <% @posts.each do |post| %>
 

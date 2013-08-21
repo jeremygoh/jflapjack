@@ -27,7 +27,7 @@ channel = dispatcher.subscribe('comments');
     channel.bind('new', function(comment) {
       $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
       $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-      $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+      $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
   });
 
 
@@ -42,9 +42,9 @@ channel = dispatcher.subscribe('comments');
  //add listener for each feed li element
  $("#feed").on('click', 'a', function(event){
     event.preventDefault();
-    $.get('/posts/15', function(data) {
+    $.get('/posts/' + this.getAttribute("data-id"), function(data) {
       console.log(data);
-      $('#feed-post').append(data)
+      $('#feed-post').html(data)
     })
 
  })

@@ -22,6 +22,10 @@ gem 'devise'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+
+gem 'link_thumbnailer'
+
+
 group :development, :test do
   gem 'rspec-rails'
   #gem 'guard-rspec'
