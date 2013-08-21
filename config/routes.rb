@@ -2,6 +2,8 @@ Flapjack::Application.routes.draw do
 
   devise_for :users
 
+  resources :posts, only: [:show]
+
   #notes
   get "notes/new"
   post "notes", to: "notes#create", as: :notes

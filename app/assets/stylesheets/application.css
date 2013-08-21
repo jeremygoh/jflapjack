@@ -51,7 +51,21 @@ form[class=post-comments] input[type=image]{
 }
 
 
+#feed{
+  background-color: #eee;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  display: inline-block;
+}
 
+#feed-post{
+  background-color: #eee;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  display: inline-block;
+}
 
 
 

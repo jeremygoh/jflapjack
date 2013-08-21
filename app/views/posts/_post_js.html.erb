@@ -1,4 +1,6 @@
 <script>
+
+
     $(window).on('load', function(){
       setTimeout(function() {
         $(".post").css({height: 'auto'});
@@ -6,10 +8,8 @@
       }, 100);
       // alert('hi');
     });
-  </script>
+ 
 
-
-  <script>
 
 //for websockets
 if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
@@ -20,21 +20,33 @@ else
   {
     var dispatcher = new Pusher('85afdbcca2eee964c60d')
   }
+
+
 //var dispatcher = new WebSocketRails('localhost:3000/websocket')
-    channel = dispatcher.subscribe('comments');
+channel = dispatcher.subscribe('comments');
     channel.bind('new', function(comment) {
       $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
       $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-
+      $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
   });
-</script>
-<script>
+
+
 //for ajax form submit for creating a new comment
 
  $('#iso-container form').on('submit',function(event){
   event.preventDefault();
   //console.log(event) 
   $.post("/comments", $(this).serialize());
+ })
+
+ //add listener for each feed li element
+ $("#feed").on('click', 'a', function(event){
+    event.preventDefault();
+    $.get('/posts/15', function(data) {
+      console.log(data);
+      $('#feed-post').append(data)
+    })
+
  })
 
 </script>

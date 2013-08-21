@@ -4,10 +4,19 @@
 		<%= render 'post', post: post %>
 	<% end %>
 </div>
+
+<div id="feed">
+	<ul>
+<% @last_comments.each do |comment| %>
+	<li><a href="/posts/<%= comment.post.id %>"><%= comment.body %></a> | <%= comment.user.id %></li>
+<% end %>
+	</ul>
+</div>
+
+<div id="feed-post">
+</div>
+
 <% @posts.each do |post| %>
-
-
-
 
 	<script>
 				// dynamically get sizes
