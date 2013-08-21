@@ -116,5 +116,19 @@ $(function(){
 });
 
 </script>
+
+
+<script>
+//for websockets
+var dispatcher = new WebSocketRails('localhost:3000/websocket')
+channel = dispatcher.subscribe('comments');
+channel.bind('new', function(comment) {
+  console.log(comment);
+});
+
+</script>
+
+
+
 </body>
 </html>

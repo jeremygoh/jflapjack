@@ -28,7 +28,7 @@ group :development, :test do
   #gem 'terminal-notifier-guard'
   #gem 'shoulda-matchers'
   #gem 'factory_girl'
-  #gem 'websocket-rails'
+  gem 'websocket-rails'
   gem 'debugger'
 end
 
