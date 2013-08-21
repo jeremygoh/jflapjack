@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def websocket 
+    if defined?(WebsocketRails)
+      WebsocketRails
+    else
+      Pusher
+    end
+  end
+  
   protected
 
   def configure_permitted_parameters
