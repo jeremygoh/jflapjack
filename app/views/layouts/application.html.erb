@@ -122,7 +122,18 @@ $(function(){
 
 <script>
 //for websockets
-var dispatcher = new WebSocketRails('localhost:3000/websocket')
+
+
+if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
+        {
+          var dispatcher = new WebSocketRails('localhost:3000/websocket')
+        }
+        else
+        {
+           var dispatcher = new Pusher('85afdbcca2eee964c60d')
+        }
+
+//var dispatcher = new WebSocketRails('localhost:3000/websocket')
 channel = dispatcher.subscribe('comments');
 channel.bind('new', function(comment) {
   console.log(comment);
