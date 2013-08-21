@@ -5,6 +5,10 @@
 	<% end %>
 </div>
 <% @posts.each do |post| %>
+
+
+
+
 	<script>
 				// dynamically get sizes
 	      $(document).ready(function() {
@@ -23,21 +27,9 @@
 
 	     		$('#comment-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
 	     		$('#comment-<%= post.id %>').css("transform-origin","top left");
-
-// -webkit-transform-origin: top left;
 				});
-				//#post-<%= post.id %>
-
 
 	</script>
 	<% end %>
-	<script>
-		$(window).on('load', function(){
-			setTimeout(function() {
-	 			$(".post").css({height: 'auto'});
-	   		$container.isotope( 'reLayout' );
-	   	}, 100);
-   		// alert('hi');
-		});
-	</script>
-	
+	<%= render "post_js" %>
+ 	

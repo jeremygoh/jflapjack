@@ -1,0 +1,40 @@
+<script>
+    $(window).on('load', function(){
+      setTimeout(function() {
+        $(".post").css({height: 'auto'});
+        $container.isotope( 'reLayout' );
+      }, 100);
+      // alert('hi');
+    });
+  </script>
+
+
+  <script>
+
+//for websockets
+if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
+  {
+    var dispatcher = new WebSocketRails('localhost:3000/websocket')
+  }
+else
+  {
+    var dispatcher = new Pusher('85afdbcca2eee964c60d')
+  }
+//var dispatcher = new WebSocketRails('localhost:3000/websocket')
+    channel = dispatcher.subscribe('comments');
+    channel.bind('new', function(comment) {
+      $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
+      $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+
+  });
+</script>
+<script>
+//for ajax form submit for creating a new comment
+
+ $('#iso-container form').on('submit',function(event){
+  event.preventDefault();
+  //console.log(event) 
+  $.post("/comments", $(this).serialize());
+ })
+
+</script>
