@@ -18,6 +18,21 @@
     }
 
 //var dispatcher = new WebSocketRails('localhost:3000/websocket')
+
+
+//******for adding new posts but only if following
+
+// function  appendComment(comment) {
+//         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
+//         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+//         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+//     }
+
+  // users.each(function(){
+  //   channel = this;
+  //   channel.bind('comment', appendComment);
+  // })
+
   channel = dispatcher.subscribe('main_socket');
       channel.bind('comment', function(comment) {
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)

@@ -1,7 +1,15 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.find(:all, :order => "id desc")
+    if current_user
+      if !Post.followed_by(current_user).empty?
+        @posts = Post.followed_by(current_user)
+      else
+        @posts = Post.find(:all, :order => "id desc")
+      end
+    else
+        @posts = Post.find(:all, :order => "id desc")
+    end
     @last_comments = Comment.find(:all, :order => "id desc", :limit => 10).reverse
   end
 
@@ -18,4 +26,3 @@ class PostsController < ApplicationController
 
 
 end
-
