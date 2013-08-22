@@ -26,49 +26,42 @@
     });
 
 
+//build the new Post based on the websocket
+
       channel.bind('post', function(post) {
         //console.log("<div id='post-" + post.id + "' class='post " + post.type + " width2 height2' data-category='" + post.type + "' >THIS IS MY TEST</div>")
-        $('#iso-container').append(
-          "<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' >THIS IS MY TEST</div> <div id='caption-" + post.id + "' class = 'caption' > " + post.caption + "</div> <div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'>"
+        var outer = "<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>"
+        var caption = "<div id='caption-" + post.id +"' class='caption' >" + post.caption + "</div>"
+        var comment = "<div id='comment-" + post.id + "' class='post-last-comment' ><form method='post' action='/comments' class='post-comments'><input type='hidden' name='comment[post_id]' value='" + post.id + "'><input type='text' name='comment[body]' placeholder=''><input type='image' value=''></form></div>"
+        var outer_body = "<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>"
 
 
+        if (post.type.toLowerCase() === "note" )
+          {var post_body = post.body}
+        else if (post.type.toLowerCase() === "link" )
+          {
+            if (post.thumbnail != nil)
+              {var post_body = "<a href='" + post.url + "'>< img src='" + post.thumbnail + "'</a>"}
+            else
+              {var post_body = "<a href='" + post.url + "'>" + post.url + "</a>" }
+          }
+        else if (post.type.toLowerCase() === "photo" )
+          {var post_body = "<div class='" + post.type.toLowerCase() + "'>< img src='" + post.photo_url + "'</div>" }
+        else
+          {var post_body = "POST_VIDEO"}
 
 
+        //var create_post = $('#iso-container').append(outer)
+        $('#iso-container').append(outer).html(caption + outer_body).html(comment)
 
 
-          )
+        // append(post_body))
+        // $('#iso-container').append(outer).append(outer_body).append(post_body)
+        // $('#iso-container').append(outer)
+
+        // 
     });
 
-
-
-
-//       <% if type == "note" %>
-//         <%= post.body %>
-//       <% elsif type == "link" %>
-//         <% if post.thumbnail != nil %>
-//           <a href="<%= post.url %>"><%= image_tag(post.thumbnail) %></a>
-//         <% else %>
-//           <a href="<%= post.url %>"><%= post.url %></a>
-//         <% end %>
-//       <% elsif type == "photo" %>
-//         <div class =  "<%= type %>">
-//           <%= image_tag post.photo.url(:large) %>
-//         </div>
-//       <% else %>
-//         <%# post.video %>
-//       <% end %>
-//     </div>
-//     <!-- post comments -->
-//     <div id="comment-<%= post.id %>" class = 'post-last-comment' >
-//       <form method="post" action="/comments" class="post-comments">
-//         <%= token_tag nil %>
-//         <input type="hidden" name="comment[post_id]" value="<%= post.id %>">
-//         <input type="text" name="comment[body]" placeholder="<%= post.last_comment%>">
-//         <input type="image" value=" ">
-//       </form>
-//     </div>
-//     <!-- <h1><%= get_size_multiplier(post) %></h1> -->
-// </div>
 
 
 

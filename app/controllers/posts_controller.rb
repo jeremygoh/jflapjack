@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all
+    @posts = Post.find(:all, :order => "id desc")
     @last_comments = Comment.find(:all, :order => "id desc", :limit => 10).reverse
   end
 
