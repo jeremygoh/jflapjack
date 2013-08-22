@@ -202,7 +202,7 @@ text-align: center;
 
 .variable-sizes .post.width2 { width: 230px; }
 
-.variable-sizes .post.height2 { height: 430px; }
+.variable-sizes .post.height2 { height: auto; }
 
 .variable-sizes .post.width2.height2 {
   /*font-size: 2.0em;*/
