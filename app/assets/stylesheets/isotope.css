@@ -106,7 +106,7 @@ body {
 }
 
 .post.post-video    { background: #333; background: hsl(   0, 100%, 50%); }
-.post.post-photo    { background: #666; background: hsl(  36, 100%, 50%); }
+.post.post-photo    { background: #666; background: hsl(  299, 90%, 20%); }
 .post.post-link     { background: #999; background: hsl( 180, 70%, 50%); }
 .post.post-note     { background: #fff; background: hsl( 108, 80%, 50%); }
 
@@ -201,6 +201,8 @@ text-align: center;
 
 
 .variable-sizes .post.width2 { width: 230px; }
+
+.variable-sizes .post.width2 form { width: 210px; }
 
 .variable-sizes .post.height2 { height: auto; }
 

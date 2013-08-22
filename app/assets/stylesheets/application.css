@@ -36,6 +36,11 @@ form[class=post-comments] input{
   background-color: transparent;
   -webkit-appearance: caret;
   box-shadow: none;
+   width:78%;
+   float:left;
+   clear:left;
+   margin-top: 10px;
+   margin-left:5px;
 }
 
 
@@ -45,9 +50,10 @@ form[class=post-comments] input[type=image]{
   background-image: url("/submit-button.png");
   background-repeat: no-repeat;
   height: 22px;
-  width: 22px;
-  margin-left: 228px;
-  margin-top: 4px;
+  width: 9%;
+  float:right;
+  clear:right;
+  margin-top: 16px;
 }
 
 
