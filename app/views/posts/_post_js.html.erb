@@ -51,20 +51,13 @@
           {var post_body = "POST_VIDEO"}
 
 
-        //var create_post = $('#iso-container').append(outer)
-        $('#iso-container').append(outer).html(caption + outer_body).html(comment)
+        $('#iso-container').append(outer)
+        $('#post-'+post.id).append(caption)
+        $('#post-'+post.id).append(outer_body)
+        $('#body-'+post.id).append(post_body)
+        $('#post-'+post.id).append(comment)
 
-
-        // append(post_body))
-        // $('#iso-container').append(outer).append(outer_body).append(post_body)
-        // $('#iso-container').append(outer)
-
-        // 
-    });
-
-
-
-
+})
  // websocket[:main_socket].trigger 'post',{id: @note.id, type: @note.type, caption: @note.caption, note_body: @note.body }
  //  websocket[:main_socket].trigger 'post',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
  //   websocket[:main_socket].trigger 'post',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
