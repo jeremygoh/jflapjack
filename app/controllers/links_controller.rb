@@ -13,8 +13,10 @@ before_action :redirect_if_not_signed_in
     begin    
       @thumb = LinkThumbnailer.generate(@link.url)
 
-      if @thumb 
+      if @thumb && @thumb.image
         @link.thumbnail = @thumb.image
+      else 
+        @link.thumbnail = @thumb.images.first.source_url.to_s
       end
       @link.user = current_user
 
