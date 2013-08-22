@@ -19,7 +19,9 @@
 					<%= image_tag post.photo.url(:large) %>
 				</div>
 			<% else %>
-				<%# post.video %>
+				<div class =  "<%= type %>">
+					<a href="<%= post.youtube_url %>"><%= post.youtube_url %></a>
+				</div>
 			<% end %>
 		</div>
 		<!-- post comments -->

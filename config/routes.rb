@@ -13,6 +13,8 @@ Flapjack::Application.routes.draw do
   get "links/new"
   post "links", to: "links#create", as: :links
 
+  #videos
+  resources :videos
   #photos
   # get "photos/new"
   # post "photos", to: "photos#create", as: :photos

@@ -24,6 +24,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 
 
 gem 'link_thumbnailer'
+gem 'youtube_it'
 
 
 group :development, :test do

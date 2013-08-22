@@ -33,7 +33,7 @@
         var outer = $("<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
         var caption = $("<div id='caption-" + post.id +"' class='caption' >" + post.caption + "</div>")
         var comment = $("<div id='comment-" + post.id + "' class='post-last-comment' ><form method='post' action='/comments' class='post-comments'><input type='hidden' name='comment[post_id]' value='" + post.id + "'><input type='text' name='comment[body]' placeholder=''><input type='image' value=''></form></div>")
-                var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
+        var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
 
         
         if (post.type.toLowerCase() === "note" )
@@ -52,7 +52,9 @@
           //console.log(post.photo_url)
           }
         else
-          {post_body = "POST_VIDEO"}
+          {
+          post_body = "<div class =  '" +post.type.toLowerCase() + "'><a href='" + post.youtube_url + "'>" + post.youtube_url + "</a></div>"
+          }
 
 
         total = $(outer)
