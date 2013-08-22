@@ -14,6 +14,7 @@ before_action :redirect_if_not_signed_in
         @photo = Photo.new(params[:photo].permit(:caption, :photo))
         @photo.user = current_user
         if @photo.save
+          websocket[:main_socket].trigger 'post',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
             if params[:photo].blank?
                 redirect_to '/'
             else
@@ -29,7 +30,6 @@ before_action :redirect_if_not_signed_in
     def update
       @photo = Photo.find(params[:id])
       if @photo.update_attributes(params[:photo].permit(:crop_x,:crop_y,:crop_w,:crop_h))
-
         if !params[:photo].blank?
           flash[:notice] = "Successfully updated photo."
           redirect_to '/'
@@ -41,3 +41,6 @@ before_action :redirect_if_not_signed_in
       end
     end
 end
+
+
+

@@ -1,49 +1,94 @@
 <script>
-
-
-    $(window).on('load', function(){
-      setTimeout(function() {
-        $(".post").css({height: 'auto'});
-        $container.isotope( 'reLayout' );
-      }, 100);
-      // alert('hi');
-    });
- 
-
+  $(window).on('load', function(){
+    setTimeout(function() {
+      $(".post").css({height: 'auto'});
+      $container.isotope( 'reLayout' );
+    }, 100);
+    // alert('hi');
+  });
 
 //for websockets
-if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
-  {
-    var dispatcher = new WebSocketRails('localhost:3000/websocket')
-  }
-else
-  {
-    var dispatcher = new Pusher('85afdbcca2eee964c60d')
-  }
-
+  if (typeof WebSocketRails !== "undefined" && WebSocketRails !== null)
+    {
+      var dispatcher = new WebSocketRails('localhost:3000/websocket')
+    }
+  else
+    {
+      var dispatcher = new Pusher('85afdbcca2eee964c60d')
+    }
 
 //var dispatcher = new WebSocketRails('localhost:3000/websocket')
-channel = dispatcher.subscribe('comments');
-    channel.bind('new', function(comment) {
-      $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
-      $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-      $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
-  });
+  channel = dispatcher.subscribe('main_socket');
+      channel.bind('comment', function(comment) {
+        $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
+        $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+    });
+
+
+      channel.bind('post', function(post) {
+        //console.log("<div id='post-" + post.id + "' class='post " + post.type + " width2 height2' data-category='" + post.type + "' >THIS IS MY TEST</div>")
+        $('#iso-container').append(
+          "<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' >THIS IS MY TEST</div> <div id='caption-" + post.id + "' class = 'caption' > " + post.caption + "</div> <div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'>"
+
+
+
+
+
+
+          )
+    });
+
+
+
+
+//       <% if type == "note" %>
+//         <%= post.body %>
+//       <% elsif type == "link" %>
+//         <% if post.thumbnail != nil %>
+//           <a href="<%= post.url %>"><%= image_tag(post.thumbnail) %></a>
+//         <% else %>
+//           <a href="<%= post.url %>"><%= post.url %></a>
+//         <% end %>
+//       <% elsif type == "photo" %>
+//         <div class =  "<%= type %>">
+//           <%= image_tag post.photo.url(:large) %>
+//         </div>
+//       <% else %>
+//         <%# post.video %>
+//       <% end %>
+//     </div>
+//     <!-- post comments -->
+//     <div id="comment-<%= post.id %>" class = 'post-last-comment' >
+//       <form method="post" action="/comments" class="post-comments">
+//         <%= token_tag nil %>
+//         <input type="hidden" name="comment[post_id]" value="<%= post.id %>">
+//         <input type="text" name="comment[body]" placeholder="<%= post.last_comment%>">
+//         <input type="image" value=" ">
+//       </form>
+//     </div>
+//     <!-- <h1><%= get_size_multiplier(post) %></h1> -->
+// </div>
+
+
+
+ // websocket[:main_socket].trigger 'post',{id: @note.id, type: @note.type, caption: @note.caption, note_body: @note.body }
+ //  websocket[:main_socket].trigger 'post',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
+ //   websocket[:main_socket].trigger 'post',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
 
 
 //for ajax form submit for creating a new comment
-
- $('#iso-container form').on('submit',function(event){
-  event.preventDefault();
-  //console.log(event) 
-  $.post("/comments", $(this).serialize());
- })
+   $('#iso-container form').on('submit',function(event){
+    event.preventDefault();
+    //console.log(event) 
+    $.post("/comments", $(this).serialize());
+   })
 
  //add listener for each feed li element
  $("#feed").on('click', 'a', function(event){
     event.preventDefault();
     $.get('/posts/' + this.getAttribute("data-id"), function(data) {
-      console.log(data);
+      // console.log(data);
       $('#feed-post').html(data)
     })
 

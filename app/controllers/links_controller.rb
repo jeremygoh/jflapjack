@@ -22,6 +22,7 @@ before_action :redirect_if_not_signed_in
 
     # raise @link.inspect
       if @link.save
+        websocket[:main_socket].trigger 'post',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
         redirect_to '/'
       else
         render "new"
@@ -34,4 +35,3 @@ before_action :redirect_if_not_signed_in
 
   end
 end
-
