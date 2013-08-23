@@ -82,10 +82,9 @@ function appendPost(post){
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
-    
+
         displayPreview();
-        followByUser();
-   
+        followByComment();   
 
                  
        
