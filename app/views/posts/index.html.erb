@@ -18,6 +18,7 @@
 <!-- <a>ksjdhfkjsdfhkdjs</a> -->
 <%# object =  LinkThumbnailer.generate("http://zerply.com") %>
 <%# object.images %>
+	<%= render 'side_admin' %>
 
 <% @posts.each do |post| %>
 
@@ -43,5 +44,6 @@
 
 	</script>
 	<% end %>
+
 	<%= render "post_js" %>
  	
