@@ -125,7 +125,7 @@ function followByComment()
               $.get("/follow/user_from_comment/" + commentID, function(response){
                     var user = response.user_id.toString();
                    addSocketListenerForUser(user.toString());
-                   // addLastFivePosts(user);
+                    addLastFivePosts(user);
               })
            
             })
@@ -138,15 +138,15 @@ followByComment();
 
 
 
-// function addLastFivePosts(user){
-//   $.get('/posts/five/' + user, function(response){
-//       test = response
-//       $(response).each(function(post){
-//         appendPost(post);
-//       })
-//   })
+function addLastFivePosts(user){
+  $.get('/posts/five/' + user, function(response){
+      test = response
+      $(response).each(function(){
+        appendPost(this);
+      })
+  })
 
-// }
+}
 
 
 

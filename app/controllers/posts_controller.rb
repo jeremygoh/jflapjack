@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def last_five_from_user
-      render :json => User.find(params[:id]).posts(:order => "created_at desc", :limit => 5)
+      render :json => User.find(params[:id]).posts(:order => "created_at desc", :limit => 5).to_json(:only=> [:id, :type, :caption, :body, :url, :thumbnail], :methods => [:photo_url])
   end
 
 end
