@@ -22,8 +22,11 @@ class User < ActiveRecord::Base
   end
   
   def follow(user_id)
-    self.followers << User.find(user_id)
-    self.save
+    user = User.find(user_id)
+    unless self.followers.include?(user)
+        self.followers << user
+        self.save
+    end
   end
 
   def follow_user_by_comment(comment_id)
@@ -33,6 +36,14 @@ class User < ActiveRecord::Base
 
   def email_required?
     false
+  end
+
+  def is_being_followed?(possible_follower)
+    if self.followers.include?(possible_follower)
+      return "1"
+    else
+      return "0"
+    end
   end
   
 end
