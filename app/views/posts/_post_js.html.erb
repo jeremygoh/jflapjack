@@ -56,10 +56,10 @@ function appendPost(post){
           { post_body = post.note_body }
         else if (post.type.toLowerCase() === "link" )
           {
-            if (post.link_thumb != "no_image" )
-              {post_body = "<a href='" + post.link_url + "'><img src=" + post.link_thumb + "></a>"}
+            if (post.thumbnail != "no_image" )
+              {post_body = "<a href='" + post.url + "'><img src=" + post.thumbnail + "></a>"}
             else
-              {post_body = "<a href='" + post.link_url + "'>" + post.link_url + "</a>" }
+              {post_body = "<a href='" + post.url + "'>" + post.url + "</a>" }
           }
         else if (post.type.toLowerCase() === "photo" )
           {
