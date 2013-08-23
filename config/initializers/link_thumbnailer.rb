@@ -5,7 +5,7 @@ LinkThumbnailer.configure do |config|
   # config.mandatory_attributes = %w(url title image)
 
   # Whether you want to validate given website against mandatory attributes or not.
-  # config.strict = true
+   config.strict = false
 
   # Numbers of redirects before raising an exception when trying to parse given url.
   # config.redirect_limit = 3
@@ -17,6 +17,8 @@ LinkThumbnailer.configure do |config|
     %r{^http://pixel\.quantserve\.com/},
     %r{^http://s7\.addthis\.com/}
   ]
+
+  
 
   # Fetch 10 images maximum.
   # config.limit = 10

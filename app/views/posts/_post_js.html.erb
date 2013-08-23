@@ -33,8 +33,8 @@
   //   channel.bind('comment', appendComment);
   // })
 
-  channel = dispatcher.subscribe('main_socket');
-      channel.bind('comment', function(comment) {
+  channel_comment = dispatcher.subscribe('comment');
+      channel_comment.bind('new', function(comment) {
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
@@ -42,8 +42,8 @@
 
 
 //build the new Post based on the websocket
-
-      channel.bind('post', function(post) {
+  channel_post = dispatcher.subscribe('post')
+      channel_post.bind('new', function(post) {
         //console.log("<div id='post-" + post.id + "' class='post " + post.type + " width2 height2' data-category='" + post.type + "' >THIS IS MY TEST</div>")
         var outer = $("<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
         var caption = $("<div id='caption-" + post.id +"' class='caption' >" + post.caption + "</div>")
@@ -73,7 +73,7 @@
         total = $(outer)
                   .append(caption)
                   .append(outer_body.append(
-                    $(post_body))
+                    post_body)
                   ).append(comment);
 
         // $(total).append($(outer_body).append(post_body) + comment)

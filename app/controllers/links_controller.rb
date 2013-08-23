@@ -15,14 +15,14 @@ before_action :redirect_if_not_signed_in
 
       if @thumb && @thumb.image
         @link.thumbnail = @thumb.image
-      else 
+      elsif @thumb
         @link.thumbnail = @thumb.images.first.source_url.to_s
       end
       @link.user = current_user
 
     # raise @link.inspect
       if @link.save
-        websocket[:main_socket].trigger 'post',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
+        websocket[:post].trigger 'new',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
         redirect_to '/'
       else
         render "new"
