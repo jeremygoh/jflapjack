@@ -26,5 +26,8 @@ class PostsController < ApplicationController
   def destroy
   end
 
+  def last_five_from_user
+      render :json => User.find(params[:id]).posts(:order => "created_at desc", :limit => 5)
+  end
 
 end
