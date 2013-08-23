@@ -1,18 +1,14 @@
 <% type = post.type.downcase! %>
 <div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> width2 height2' data-category="<%= type %>" >
-		<!-- post caption -->
-		<div id="caption-<%= post.id %>" class = 'caption' >
-			<%= post.caption %>
-		</div>
 		<!-- post body depending on type -->
 		<div id="body-<%= post.id %>" class = "<%= 'post-body-'+type %>">
 			<% if type == "note" %>
 				<%= post.body %>
 			<% elsif type == "link" %>
 				<% if post.thumbnail != "no_image" %>
-					<a href="<%= post.url %>"><%= image_tag(post.thumbnail) %></a>
+					<a href="<%= post.url %>"><%= image_tag(post.thumbnail, :class =>"thumb-img") %></a>
 				<% else %>
-					<a href="<%= post.url %>"><%= post.url %></a>
+					<a href="<%= post.url %>" class='string-url'><%= post.url %></a>
 				<% end %>
 			<% elsif type == "photo" %>
 				<div class =  "<%= type %>">
@@ -24,12 +20,16 @@
 				</div>
 			<% end %>
 		</div>
+		<!-- post caption -->
+		<div id="caption-<%= post.id %>" class = 'caption' >
+			<h5 class="lead"><%= post.caption %></h5>
+		</div>
 		<!-- post comments -->
 		<div id="comment-<%= post.id %>" class = 'post-last-comment' >
 			<form method="post" action="/comments" class="post-comments">
 				<%= token_tag nil %>
 				<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
-				<input type="text" name="comment[body]" placeholder="<%= post.last_comment%>">
+				<input type="text" name="comment[body]" placeholder="<%= post.last_comment %>">
 				<input type="image" value=" ">
 			</form>
 		</div>
