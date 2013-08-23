@@ -5,4 +5,10 @@ class FollowsController < ApplicationController
 			current_user.follow_user_by_comment(params[:id]) if current_user
 	end
 
+  def user_id_from_comment_id
+
+      user_id = Comment.find(params[:id]).user.id
+      render :json => {user_id: user_id}.to_json
+  end
+
 end

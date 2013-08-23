@@ -31,7 +31,12 @@ Flapjack::Application.routes.draw do
   #follow users by comment
   post 'follow/comment/:id', to: "follows#follow_by_comment"
 
+  get 'follow/user_from_comment/:id', to: "follows#user_id_from_comment_id"
 
+
+  #last five posts from a user
+
+  get 'posts/five/:id', to: "posts#last_five_from_user"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

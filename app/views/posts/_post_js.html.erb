@@ -27,17 +27,23 @@
 //         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
 //         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
 //     }
+  <% if @followed_users_ids_in_json %>
+      var users = <%=  @followed_users_ids_in_json %>
 
-  var users = <%=  @followed_users_ids_in_json %>;
-  console.log(users);
+      function addSocketListenerForUser(id){
+        channel = dispatcher.subscribe(id);
+        channel.bind('new', function(newPostData){
+        tester = $.parseJSON(newPostData)
+        appendPost($.parseJSON(newPostData));
 
-  $(users).each(function(){
-    id = this.toString();
-    channel = dispatcher.subscribe(id);
-    channel.bind('new', function(newPostData){
-      appendPost(newPostData);
-    });
-  })
+        });
+      }
+
+      $(users).each(function(){
+        user = this.toString();
+        addSocketListenerForUser(user);
+      })
+  <% end %>
 
 function appendPost(post){
 
@@ -51,10 +57,10 @@ function appendPost(post){
           { post_body = post.note_body }
         else if (post.type.toLowerCase() === "link" )
           {
-            if (post.link_thumb != "no_image" )
-              {post_body = "<a href='" + post.link_url + "'><img src=" + post.link_thumb + "></a>"}
+            if (post.thumbnail != "no_image" )
+              {post_body = "<a href='" + post.url + "'><img src=" + post.thumbnail + "></a>"}
             else
-              {post_body = "<a href='" + post.link_url + "'>" + post.link_url + "</a>" }
+              {post_body = "<a href='" + post.url + "'>" + post.url + "</a>" }
           }
         else if (post.type.toLowerCase() === "photo" )
           {
@@ -105,13 +111,24 @@ function appendPost(post){
 }
 
       //follow by comment
-function followByComment(){
+function followByComment()
+{
 
-        $('a.follow-user').on('click', function(event){
-            event.preventDefault();
-            address = $(this).attr('href');
-            console.log(address);
-            $.post(address);
+        $('a.follow-user').on('click', function(event)
+        {
+              event.preventDefault();
+              var address = $(this).attr('href');
+              var commentID = $(this).attr('href').split("/").pop();
+              console.log(commentID)
+            $.post(address, function(someresponse)
+            {
+              $.get("/follow/user_from_comment/" + commentID, function(response){
+                    var user = response.user_id.toString();
+                   addSocketListenerForUser(user.toString());
+                    addLastFivePosts(user);
+              })
+           
+            })
         })
 }
 
@@ -121,10 +138,15 @@ followByComment();
 
 
 
+function addLastFivePosts(user){
+  $.get('/posts/five/' + user, function(response){
+      test = response
+      $(response).each(function(){
+        appendPost(this);
+      })
+  })
 
-
-
-
+}
 
 
 

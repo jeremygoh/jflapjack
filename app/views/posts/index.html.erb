@@ -7,9 +7,9 @@
 
 <div id="feed">
 	<ul>
-<% @last_comments.each do |comment| %>
-	<li><a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a></li>
-<% end %>
+				<% @last_comments.each do |comment| %>
+					<li><a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a></li>
+				<% end %>
 	</ul>
 </div>
 

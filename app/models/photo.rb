@@ -21,6 +21,10 @@ after_update :reprocess_photo, :if => :cropping?
     @geometry[style] ||= Paperclip::Geometry.from_file(photo_path)
   end
 
+  def photo_url
+    self.photo.url(:large)
+  end
+
   private
   
   def reprocess_photo
