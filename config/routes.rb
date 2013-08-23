@@ -28,8 +28,8 @@ Flapjack::Application.routes.draw do
   post "comments", to: "comments#create", as: :comments
 
 
-  #follow users
-  get 'follow/comment/:id', to: "follows#follow_by_comment"
+  #follow users by comment
+  post 'follow/comment/:id', to: "follows#follow_by_comment"
 
 
 

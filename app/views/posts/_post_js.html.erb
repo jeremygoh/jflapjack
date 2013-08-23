@@ -81,8 +81,52 @@ function appendPost(post){
       channel_comment.bind('new', function(comment) {
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.user + "'>" + comment.user + "</a></li>")
+        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+    
+        displayPreview();
+        followByUser();
+   
+
+                 
+       
+
     });
+
+
+ //add listener for each feed li element
+  function displayPreview(){ 
+         $("a.follow-text").on('click', function(event){
+          event.preventDefault();
+          $.get('/posts/' + this.getAttribute("data-id"), function(data) {
+            // console.log(data);
+            $('#feed-post').html(data)
+          })
+
+       })
+}
+
+      //follow by comment
+function followByComment(){
+
+        $('a.follow-user').on('click', function(event){
+            event.preventDefault();
+            address = $(this).attr('href');
+            console.log(address);
+            $.post(address);
+        })
+}
+
+//for those loaded initially
+displayPreview();
+followByComment();
+
+
+
+
+
+
+
+
 
 
 
@@ -93,14 +137,9 @@ function appendPost(post){
     $.post("/comments", $(this).serialize());
    })
 
- //add listener for each feed li element
- $("#feed").on('click', 'a', function(event){
-    event.preventDefault();
-    $.get('/posts/' + this.getAttribute("data-id"), function(data) {
-      // console.log(data);
-      $('#feed-post').html(data)
-    })
+ 
 
- })
+
+
 
 </script>

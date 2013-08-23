@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def follow_by_comment(comment_id)
+  def follow_user_by_comment(comment_id)
     author = Comment.find(comment_id).user.id
     self.follow(author)
   end
