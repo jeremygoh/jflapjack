@@ -9,7 +9,7 @@
 			<% if type == "note" %>
 				<%= post.body %>
 			<% elsif type == "link" %>
-				<% if post.thumbnail != nil %>
+				<% if post.thumbnail != "no_image" %>
 					<a href="<%= post.url %>"><%= image_tag(post.thumbnail) %></a>
 				<% else %>
 					<a href="<%= post.url %>"><%= post.url %></a>

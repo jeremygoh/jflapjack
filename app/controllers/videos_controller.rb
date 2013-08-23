@@ -7,7 +7,7 @@ class VideosController < ApplicationController
 		@video = Video.new(params[:video].permit(:caption, :video, :youtube_url))
     @video.user = current_user
         if @video.save
-          websocket[:main_socket].trigger 'post',{id: @video.id, type: @video.type, caption: @video.caption, youtube_url: @video.youtube_url }
+          websocket[current_user.id.to_s.to_sym].trigger 'new',{id: @video.id, type: @video.type, caption: @video.caption, youtube_url: @video.youtube_url }
           redirect_to '/'
         else
           render "new"
