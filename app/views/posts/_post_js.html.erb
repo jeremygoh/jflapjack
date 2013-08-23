@@ -54,7 +54,9 @@ function appendPost(post){
 
         
         if (post.type.toLowerCase() === "note" )
-          { post_body = post.note_body }
+          { post_body = post.body 
+            console.log(post_body)
+          }
         else if (post.type.toLowerCase() === "link" )
           {
             if (post.thumbnail != "no_image" )
