@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   
   def index
-    if current_user
+    if current_user   
+      @followed_users_ids_in_json = current_user.followers.ids.to_json
       if !Post.followed_by(current_user).empty?
         @posts = Post.followed_by(current_user)
       else
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
         @posts = Post.find(:all, :order => "id desc")
     end
     @last_comments = Comment.find(:all, :order => "id desc", :limit => 10).reverse
+ 
   end
 
   def show

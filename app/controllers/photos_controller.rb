@@ -14,7 +14,7 @@ before_action :redirect_if_not_signed_in
         @photo = Photo.new(params[:photo].permit(:caption, :photo))
         @photo.user = current_user
         if @photo.save
-          websocket[:post].trigger 'new',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
+          websocket[current_user.id.to_s.to_sym].trigger 'new',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
             if params[:photo].blank?
                 redirect_to '/'
             else
