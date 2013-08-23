@@ -6,7 +6,7 @@ class PostsController < ApplicationController
       if !Post.followed_by(current_user).empty?
         @posts = Post.followed_by(current_user)
       else
-        @posts = Post.find(:all, :order => "id desc")
+        @posts = Post.find(:all, :order => "id desc") #replace with top 5 users
       end
     else
         @posts = Post.find(:all, :order => "id desc")
