@@ -18,18 +18,29 @@
     }
 
 //var dispatcher = new WebSocketRails('localhost:3000/websocket')
-  channel = dispatcher.subscribe('main_socket');
-      channel.bind('comment', function(comment) {
-        $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
-        $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+
+
+//******for adding new posts but only if following
+
+// function  appendComment(comment) {
+//         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
+//         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+//         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+//     }
+
+  var users = <%=  @followed_users_ids_in_json %>;
+  console.log(users);
+
+  $(users).each(function(){
+    id = this.toString();
+    channel = dispatcher.subscribe(id);
+    channel.bind('new', function(newPostData){
+      appendPost(newPostData);
     });
+  })
 
+function appendPost(post){
 
-//build the new Post based on the websocket
-
-      channel.bind('post', function(post) {
-        //console.log("<div id='post-" + post.id + "' class='post " + post.type + " width2 height2' data-category='" + post.type + "' >THIS IS MY TEST</div>")
         var outer = $("<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
         var caption = $("<div id='caption-" + post.id +"' class='caption' >" + post.caption + "</div>")
         var comment = $("<div id='comment-" + post.id + "' class='post-last-comment' ><form method='post' action='/comments' class='post-comments'><input type='hidden' name='comment[post_id]' value='" + post.id + "'><input type='text' name='comment[body]' placeholder=''><input type='image' value=''></form></div>")
@@ -40,16 +51,14 @@
           { post_body = post.note_body }
         else if (post.type.toLowerCase() === "link" )
           {
-            if (post.thumbnail != "nil" )
+            if (post.link_thumb != "no_image" )
               {post_body = "<a href='" + post.link_url + "'><img src=" + post.link_thumb + "></a>" 
-              console.log(post.link_thumb)}
             else
               {post_body = "<a href='" + post.link_url + "'>" + post.link_url + "</a>" }
           }
         else if (post.type.toLowerCase() === "photo" )
           {
           post_body = "<div class='" + post.type.toLowerCase() + "'><img src='" + post.photo_url +"'></div>" 
-          //console.log(post.photo_url)
           }
         else
           {
@@ -60,23 +69,24 @@
         total = $(outer)
                   .append(caption)
                   .append(outer_body.append(
-                    $(post_body))
+                    post_body)
                   ).append(comment);
 
-        // $(total).append($(outer_body).append(post_body) + comment)
-
-        //console.log(post_body)
 
         $('#iso-container').isotope( 'insert', total)
-        // $('#post-'+post.id).isotope( 'insert', caption)
-        // $('#post-'+post.id).isotope( 'insert', outer_body)
-        // $('#body-'+post.id).isotope( 'insert', post_body)
-        // $('#post-'+post.id).isotope( 'insert', comment)
-        //console.log(post_body)
-})
- // websocket[:main_socket].trigger 'post',{id: @note.id, type: @note.type, caption: @note.caption, note_body: @note.body }
- //  websocket[:main_socket].trigger 'post',{id: @link.id, type: @link.type, caption: @link.caption, link_url: @link.url ,link_thumb: @link.thumbnail}
- //   websocket[:main_socket].trigger 'post',{id: @photo.id, type: @photo.type, caption: @photo.caption, photo_url: @photo.photo.url(:large) }
+}
+
+
+
+
+
+  channel_comment = dispatcher.subscribe('comment');
+      channel_comment.bind('new', function(comment) {
+        $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
+        $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+    });
+
 
 
 //for ajax form submit for creating a new comment

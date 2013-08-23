@@ -6,7 +6,7 @@ before_action :redirect_if_not_signed_in
     comment.user = current_user
     if comment.save
       # flash[:notice] = "Comment saved successfully"
-      websocket[:main_socket].trigger 'comment',{post_id: comment.post.id, id: comment.id, body: comment.body, user: comment.user.id}
+      websocket[:comment].trigger 'new',{post_id: comment.post.id, id: comment.id, body: comment.body, user: comment.user.id}
      else
       flash[:alert] = "Failed to save comment"
     end

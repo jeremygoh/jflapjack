@@ -27,6 +27,12 @@ Flapjack::Application.routes.draw do
 
   post "comments", to: "comments#create", as: :comments
 
+
+  #follow users
+  get 'follow/comment/:id', to: "follows#follow_by_comment"
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
