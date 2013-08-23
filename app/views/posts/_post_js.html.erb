@@ -77,14 +77,11 @@ function appendPost(post){
 }
 
 
-
-
-
   channel_comment = dispatcher.subscribe('comment');
       channel_comment.bind('new', function(comment) {
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
-        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + comment.user + "</li>")
+        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + ">" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.user + "'>" + comment.user + "</a></li>")
     });
 
 
