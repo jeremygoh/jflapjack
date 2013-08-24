@@ -83,6 +83,7 @@ body {
 
 #iso-container {
   border: 1px solid #999;
+  margin:18px;
   padding: 5px;
   margin-bottom: 20px;
 }
@@ -104,6 +105,7 @@ body {
   -webkit-border-top-left-radius: 0.3em;
       -moz-border-radius-topleft: 0.3em;
           border-top-left-radius: 0.3em;
+  overflow: hidden;
   
 
 }
@@ -122,32 +124,56 @@ body {
 .post .caption {
   left: 0.2em;
   top: 0.3em;
-  font-size: 1.5em;
-  line-height: 1.0em;
+
   color: #000;
   margin-left:0.7em;
-  margin-right:0.4em;
   margin-top:1.2em;
   margin-bottom:0.8em;
-/*  overflow:hidden;
-  width:400px;*/
+  
+}
+  
+.fade-out {
+position: relative;
+white-space: nowrap;
+
+}
+
+.fade-out:after{
+
+display: block;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+width: 290px;
+content: "";
+background-image: -webkit-gradient(linear,left top,right top,color-stop(70%,rgba(255,255,255,0)),color-stop(100%,rgba(255,255,255,1)));
+background-image: -webkit-linear-gradient(left,rgba(255,255,255,0) 70%,rgba(255,255,255,1) 100%);
+background-image: -moz-linear-gradient(left,rgba(255,255,255,0) 70%,rgba(255,255,255,1) 100%);
+background-image: -ms-linear-gradient(left,rgba(255,255,255,0) 70%,rgba(255,255,255,1) 100%);
+background-image: -o-linear-gradient(left,rgba(255,255,255,0) 70%,rgba(255,255,255,1) 100%);
+background: linear-gradient(to right,rgba(255,255,255,0) 70%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
 }
 
 .caption{
-
+font-size: 14px;
+line-height: 18px;
+max-height: 38px;
+color: #333;
+cursor: pointer;
 }
 
 
 
 
 h5.lead{
-  font-family: 'Roboto',arial,sans-serif;
-font-size: 16px;
-line-height: 18px;
-max-height: 38px;
+/*font-family: 'Roboto',arial,sans-serif;*/
+font-size: 2.0em;
 color: #333;
 cursor: pointer;
-
+font-weight: 100;
+ 
 }
 
 .post.large .caption {
@@ -175,24 +201,43 @@ cursor: pointer;
 a.string-url{
 
 }
-.post .post-body-note {
+.post-body-note {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
-.post .post-body-video {
+.post-body-video {
   font-size: 0.9em;
   left: 0.5em;
   top: 3.5em;
 }
 
-.post .post-last-comment {
+.post-last-comment {
   font-size: 0.9em;
   font-weight: thin;
   color: hsla(0,0%,0%,.5);
   left: 0.5em;
   top: 10em;
   margin-left:0.7em;
+
+}
+.single-comment-overlay{
+  bottom: 0px;
+height: 30px;
+background-color: #999;
+padding-bottom: 20px;
+opacity:0.3;
+
+}
+.multi-comment-overlay{
+  position: absolute;
+    bottom: -350px;
+    height: 350px;
+    width: 100%;  
+    background: #666;
+    color: white;
+    opacity:0.6;
+    padding-left:8px;
 
 }
 

@@ -4,13 +4,13 @@ $(function() {
     onChange: update_crop,
     onSelect: update_crop,
     // setSelect: [0, 0, 300, 300],
-    aspectRatio: 3/2
+    aspectRatio: 1 //3/2
   });
 });
 
 function update_crop(coords) {
   var rx = 300/coords.w; //ADJUST THIS FOR PREVIEW WINDOW -->
-  var ry = 200/coords.h; //ADJUST THIS FOR PREVIEW WINDOW -->
+  var ry = 300/coords.h; //ADJUST THIS FOR PREVIEW WINDOW -->
   //console.log("<%= @photo.photo_geometry(:large).inspect %>");
   $('#crop-preview').css({
     	width: Math.round(rx * <%= @photo.photo_geometry(:large).width %>) + 'px',
@@ -29,7 +29,7 @@ function update_crop(coords) {
 	<%= image_tag @photo.photo.url(:large), id: "cropbox" %>
 
 	<h4>Preview:</h4>
-	<div style="width:300px; height:200px; overflow:hidden">  <!--ADJUST THIS FOR PREVIEW WINDOW -->
+	<div style="width:300px; height:300px; overflow:hidden">  <!--ADJUST THIS FOR PREVIEW WINDOW -->
 	  <%= image_tag @photo.photo.url(:large), :id => "crop-preview", :class =>"preview" %>
 	</div>
 

@@ -104,7 +104,7 @@ function appendPost(post){
           event.preventDefault();
           $.get('/posts/' + this.getAttribute("data-id"), function(data) {
             // console.log(data);
-            $('#feed-post').html(data)
+            $('#feeder-post').html(data)
           })
 
        })

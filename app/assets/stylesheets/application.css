@@ -33,7 +33,7 @@ form[class=post-comments] input:-ms-input-placeholder {
 
 
 form[class=post-comments] input{
-  background-color: transparent;
+  /*background-color: transparent;*/
   -webkit-appearance: caret;
   box-shadow: none;
    width:78%;

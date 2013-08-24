@@ -24,7 +24,7 @@ div.post:hover input[type=text]{
 <%= bootstrap_flash %>
 
 <!-- navbar -->
-<div class="navbar">
+<div class="navbar hidden-desktop">
   <div class="navbar-inner">
     <div class="container">
  
@@ -39,7 +39,7 @@ div.post:hover input[type=text]{
       <a class="brand" href="/">Flapjack</a>
  
       <!-- Everything you want hidden at 940px or less, place within here -->
-      <div class="nav-collapse collapse">
+      <div class="nav-collapse collapse ">
           <ul class="nav">
             <li>
               <a href="/photos/new">Create Photo</a>
@@ -69,13 +69,14 @@ div.post:hover input[type=text]{
             
           </ul>
         <!-- .nav, .navbar-search, .navbar-form, etc -->
+        <%= render 'layouts/filter' %>
       </div>
  
     </div>
   </div>
 </div>
 
-<%= render 'layouts/filter' %>
+
 <%= yield %>
 
 <script>
@@ -108,17 +109,24 @@ div.post:hover input[type=text]{
 //hover activates cursor and goes away when unhover
 
 $(function(){    
-    $('div.post').on('mouseover', function(){
+    $('div.post').on('click', function(){
         $(this).find("input[type='text']").focus();
         $(this).find("input[type='image']").show();
     });
 });
 
 $(function(){    
-    $('div.post').on('mouseout', function(){
+    $('div.post').on('submit', function(){
         $(this).find("input[type='text']").blur();
         $(this).find("input[type='image']").hide();
     });
+});
+
+
+$(".post").hover(  
+        function(){  $(this).children("div.multi-comment-overlay").stop().animate({bottom: 50}, 500);  
+        },  
+        function(){$(this).children("div.multi-comment-overlay").stop().animate({bottom: -350}, 500);  
 });
 
 </script>
