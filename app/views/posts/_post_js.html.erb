@@ -88,15 +88,12 @@ function appendPost(post){
   channel_comment = dispatcher.subscribe('comment');
       channel_comment.bind('new', function(comment) {
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
-        $("#comment-"+comment.post_id).find('input[type="text"]').animate({fontSize: "3em"}).animate({fontSize: "1em"})
+        $("#comment-"+comment.post_id).find('input[type="text"]').animate({"opacity": "0.15"},"slow").animate({"opacity": "1"},
+            "slow")
         $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
 
         displayPreview();
-        followByComment();   
-
-                 
-       
-
+        followByComment(); 
     });
 
 
@@ -121,7 +118,7 @@ function followByComment()
               event.preventDefault();
               var address = $(this).attr('href');
               var commentID = $(this).attr('href').split("/").pop();
-              console.log(commentID)
+              // console.log(commentID)
             $.post(address, function(someresponse)
             {
               tester1 = someresponse;
@@ -142,8 +139,6 @@ function followByComment()
 displayPreview();
 followByComment();
 
-
-
 function addLastFivePosts(user){
   $.get('/posts/five/' + user, function(response){
       test = response
@@ -155,8 +150,6 @@ function addLastFivePosts(user){
 }
 
 
-
-
 //for ajax form submit for creating a new comment
    $('#iso-container form').on('submit',function(event){
     event.preventDefault();
@@ -164,9 +157,4 @@ function addLastFivePosts(user){
     $.post("/comments", $(this).serialize());
    })
 
- 
-
-
-
-
-</script>
+ </script>

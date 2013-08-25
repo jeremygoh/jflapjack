@@ -3,12 +3,14 @@
 		<!-- post body depending on type -->
 		<div id="body-<%= post.id %>" class = "<%= 'post-body-'+type %>">
 			<% if type == "note" %>
-				<%= post.body %>
+				<h6 class="note-text"><%= post.body %></h6>
 			<% elsif type == "link" %>
-				<% if post.thumbnail != "no_image" %>
+				<% if post.url == "http://www.google.com" %>
+					<a href="<%= post.url %>"><%= image_tag 'goo.png' %></a>
+				<% elsif post.thumbnail != "no_image" %>
 					<a href="<%= post.url %>"><%= image_tag(post.thumbnail, :class =>"thumb-img") %></a>
 				<% else %>
-					<a href="<%= post.url %>" class='string-url'><%= post.url %></a>
+					<a href="<%= post.url  %>" class='link-text string-url'><%= post.url %></a>
 				<% end %>
 			<% elsif type == "photo" %>
 				<div class =  "<%= type %>">
@@ -16,7 +18,7 @@
 				</div>
 			<% else %>
 				<div class =  "<%= type %>">
-					<a href="<%= post.youtube_url %>"><%= post.youtube_url %></a>
+					<a href="<%= post.youtube_url %>" class='link-text'>www.youtube.com</a>
 				</div>
 			<% end %>
 		</div>
@@ -26,19 +28,19 @@
 		</div>
 		<!-- post comments -->
 		<!-- add a comment overlay -->
-			<div id='feeder'>	
+		<div id='feeder'>	
 			<div class='multi-comment-overlay'>
-		<!--THIS NEEDS CHANGING!!!!!-->
-			<ul class='unstyled'>
-				<% @last_comments.each do |comment| %>
-				<li>
-					<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a>
-				</li>
-				<% end %>
-			</ul>
-		</div>
+			<!--THIS NEEDS CHANGING!!!!!-->
+				<ul class='unstyled'>
+					<!-- <h1><%# comment.first.post.id %></h1> -->
+				<%# @last_comments.each do |comment| %>
+					<li>
+						<!-- <a href="/posts/<%# comment.post.id %>" data-id="<%#comment.post.id%>" class="follow-text"><%# comment.body %></a> | <a href="/follow/comment/<%# comment.id %>" class="follow-user"> <%# comment.user.id %></a> -->
+					</li>
+				<%# end %>
+				</ul>
 			</div>
-
+		</div>
 		<div class='comments-container'>
 		
 		</div>

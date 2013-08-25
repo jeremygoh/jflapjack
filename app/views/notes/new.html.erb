@@ -6,10 +6,10 @@
 <%= form_for @note do |f| %>
 
 <%= f.label :caption %>
-<%= f.text_field :caption %>
+<%= f.text_field :caption, :maxlength => 27  %>
 
 <%= f.label :body %>
-<%= f.text_area :body %>
+<%= f.text_area :body, :size => '50x6', :maxlength => 140 %>
 
 <%= f.submit %>
 

@@ -1,0 +1,38 @@
+<script>
+var container = jQuery('#isotope-container');
+
+container.isotope({
+    itemSelector : '.isotope-item'
+});
+// infinitescroll() is called on the element that surrounds 
+// the items you will be loading more of
+  container.infinitescroll({
+    navSelector  : '.page-nav',    // selector for the paged navigation 
+    nextSelector : '.page-nav a',  // selector for the NEXT link (to page 2)
+    itemSelector : '.isotope-item',     // selector for all items you'll retrieve
+    loading: {
+        finishedMsg: "No more posts to load",
+        img: 'http://i.imgur.com/qkKy8.gif'
+      }
+    },
+    // call Isotope as a callback
+    function( newElements ) {
+      container.isotope( 'appended', jQuery( newElements ) ); 
+    }
+);
+
+
+
+
+// /* reLayout on window scroll */
+// jQuery(window).scroll(function() {
+//     container.isotope('reLayout');
+// });
+
+// /* reLayout every X seconds */
+// function reLayoutIsotope() {
+// container.isotope('reLayout');
+// }
+// setInterval(reLayoutIsotope, 250);  // milliseconds
+
+</script>

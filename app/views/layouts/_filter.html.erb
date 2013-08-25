@@ -10,18 +10,17 @@
     </div>
   </section>
   <script>
-      // filtering
-       var $container = $('#iso-container');
-      // initialize isotope
-      $container.isotope({
-        // options...
-      });
+    // filtering
+    var $container = $('#iso-container');
+    // initialize isotope
+    $container.isotope({
+    // options...
+    });
 
-
-      // filter items when filter link is clicked
-      $('#filter a').click(function(){
-        var selector = $(this).attr('data-filter');
+    // filter items when filter link is clicked
+    $('#filter a').click(function(){
+      var selector = $(this).attr('data-filter');
         $container.isotope({ filter: selector });
         return false;
-      });
+    });
   </script>
