@@ -25,41 +25,33 @@
 			<h5 class="lead"><%= post.caption %></h5>
 		</div>
 		<!-- post comments -->
-		<div id="comment-<%= post.id %>" class = 'post-last-comment' >
-			<form method="post" action="/comments" class="post-comments">
-				<%= token_tag nil %>
-				<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
-				<input type="text" name="comment[body]" placeholder="<%= post.last_comment %>">
-				<input type="image" value=" ">
-			</form>
-		</div>
 		<!-- add a comment overlay -->
-		<div class='single-comment-overlay'>
-
-		</div>
-		<div class='multi-comment-overlay'>
+			<div id='feeder'>	
+			<div class='multi-comment-overlay'>
+		<!--THIS NEEDS CHANGING!!!!!-->
 			<ul class='unstyled'>
-				<li>asdfsdaf dsfh dfsh dfs</li>
-				<li> sdfh dsfhsdfh sdfh s</li>
-				<li> sdfh sdfh fsdh sdf </li>
-				<li>sdfh sdf  hsdf</li>
-				<li>s dfh sdfh sdfh dsfh </li>
-				<li>asdfsdaf dsfh dfsh dfs</li>
-				<li> sdfh dsfhsdfh sdfh s</li>
-				<li> sdfh sdfh fsdh sdf </li>
-				<li>sdfh sdf  hsdf</li>
-				<li>s dfh sdfh sdfh dsfh </li>
-				<li>asdfsdaf dsfh dfsh dfs</li>
-				<li> sdfh dsfhsdfh sdfh s</li>
-				<li> sdfh sdfh fsdh sdf </li>
-				<li>sdfh sdf  hsdf</li>
-				<li>s dfh sdfh sdfh dsfh </li>
-								<li> sdfh dsfhsdfh sdfh s</li>
-				<li> sdfh sdfh fsdh sdf </li>
-
+				<% @last_comments.each do |comment| %>
+				<li>
+					<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a>
+				</li>
+				<% end %>
 			</ul>
 		</div>
+			</div>
 
+		<div class='comments-container'>
+		
+		</div>
+			<div class='single-comment-overlay'>
+				<div id="comment-<%= post.id %>" class = 'post-last-comment' >
+					<form method="post" action="/comments" class="post-comments">
+						<%= token_tag nil %>
+						<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
+						<input type="text" name="comment[body]" placeholder="<%= post.last_comment %>">
+						<input type="image" value=" ">
+					</form>
+				</div>
+			</div>
 		<!-- <h1><%= get_size_multiplier(post) %></h1> -->
 </div>
 

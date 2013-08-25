@@ -231,8 +231,8 @@ opacity:0.3;
 }
 .multi-comment-overlay{
   position: absolute;
-    bottom: -350px;
-    height: 350px;
+    bottom: -405px;
+    height: 405px;
     width: 100%;  
     background: #666;
     color: white;
@@ -240,7 +240,10 @@ opacity:0.3;
     padding-left:8px;
 
 }
-
+.comments-container{
+      overflow:hidden;
+    float:left;
+}
 /**** Photo demo ****/
 #crop-preview.preview{
   max-width: none !important;

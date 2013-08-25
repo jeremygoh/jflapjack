@@ -5,6 +5,7 @@ has_many :comments
 belongs_to :user
 
 validates_presence_of :user_id
+validates_length_of :caption,:maximum => 24
 
 	before_create do |post|
      post.time = 86400
