@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     else
         @posts = Post.find(:all, :order => "id desc")
     end
-    @last_comments = Comment.find(:all, :order => "id desc", :limit => 10).reverse
+    @last_comments = Comment.find(:all, :order => "created_at desc", :limit => 10)
  
   end
 

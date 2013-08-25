@@ -54,7 +54,9 @@ function appendPost(post){
 
         
         if (post.type.toLowerCase() === "note" )
-          { post_body = post.note_body }
+          { post_body = post.body 
+            console.log(post_body)
+          }
         else if (post.type.toLowerCase() === "link" )
           {
             if (post.thumbnail != "no_image" )
@@ -122,11 +124,15 @@ function followByComment()
               console.log(commentID)
             $.post(address, function(someresponse)
             {
-              $.get("/follow/user_from_comment/" + commentID, function(response){
-                    var user = response.user_id.toString();
-                   addSocketListenerForUser(user.toString());
-                    addLastFivePosts(user);
-              })
+              tester1 = someresponse;
+              if(someresponse.already_following != "1"){              //won't add a socket listener or add new posts if already following that user
+                    $.get("/follow/user_from_comment/" + commentID, function(response){
+                        var user = response.user_id.toString();
+                       addSocketListenerForUser(user.toString());      
+                        addLastFivePosts(user);
+                  })
+              }
+              
            
             })
         })
