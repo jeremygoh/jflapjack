@@ -15,6 +15,7 @@
 				// dynamically get sizes
 	      $(document).ready(function() {
 	      	scale = <%= get_size_multiplier(post) %>
+	      	
 	     		postWidth = $('#post-<%= post.id %>').width();
 	     		newWidth = postWidth*scale
 					postHeight = $('#post-<%= post.id %>').height();
@@ -24,14 +25,17 @@
 	     		//$('#post-<%= post.id %>').css({height: 'auto'});
 	     		$('#caption-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
 	     		$('#caption-<%= post.id %>').css("transform-origin","top left");
-	     		
-	     		$('#body-<%= post.id %>.post-body-note').css("transform","scale("+scale+","+scale+")");
+
+	    //  		$('#body-<%= post.id %>.post-body-note').css("transform","scale("+scale+","+scale+")");
+					// $('#body-<%= post.id %>.post-body-note').css("transform-origin","middle middle");
+	
+
 	     		$('#body-<%= post.id %>.post-last-comment').css("transform","scale("+scale+","+scale+")");
-	     		$('#body-<%= post.id %>.post-last-comment').css("transform-origin","top left");
+	     		$('#body-<%= post.id %>.post-last-comment').css("transform-origin","bottom left");
 
 
 	     		$('#comment-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
-	     		$('#comment-<%= post.id %>').css("transform-origin","top left");
+	     		$('#comment-<%= post.id %>').css("transform-origin","left 25px");
 				});
 
 	</script>
