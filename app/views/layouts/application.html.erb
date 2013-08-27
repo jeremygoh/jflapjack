@@ -124,15 +124,26 @@
                     var idAttr = $(this).attr("id")
                     var id = idAttr.split("-").pop()
                     $.get("/posts/"+ id + "/last_five_comments", function(comments){
-                      $(comments).each(function(){
-                        $("#" + idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>')
 
-                      })
+
+                      //calculate heights to determine number of posts to append
+                      var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height();
+                      var maxSizeOfList1 =  Math.round(bodyHeight1 / 20);
                       
+                      if(comments.length - maxSizeOfList1 >0)
+                      {
+                         sliceNumber = comments.length - maxSizeOfList1
+                      }
+                      else{
+                         sliceNumber = 0
+                      }
+                      clippedComments = comments.slice(sliceNumber)
+
+                      $(clippedComments).each(function(){
+                            $("#" + idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>');
+                           
+                      })                
                     })
-
-
-                    
 
 
 
