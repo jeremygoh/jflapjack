@@ -1,16 +1,18 @@
-<% @note.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-<% end %>
+<div id="window-pane">
+	<% @note.errors.full_messages.each do |message| %>
+	    <p><%= message %></p>
+	<% end %>
 
-<h2>Create New Note</h2>
-<%= form_for @note do |f| %>
+	<h2>Create New Note</h2>
+	<%= form_for @note do |f| %>
 
-<%= f.label :caption %>
-<%= f.text_field :caption, :maxlength => 27  %>
+	<%= f.label :caption %>
+	<%= f.text_field :caption, :maxlength => 27  %>
 
-<%= f.label :body %>
-<%= f.text_area :body, :size => '50x6', :maxlength => 140 %>
+	<%= f.label :body %>
+	<%= f.text_area :body, :size => '50x6', :maxlength => 140 %>
 
-<%= f.submit %>
+	<%= f.submit %>
 
-<% end %>
+	<% end %>
+</div>

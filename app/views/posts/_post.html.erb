@@ -5,9 +5,10 @@
 			<% if type == "note" %>
 				<h6 class="note-text"><%= post.body %></h6>
 			<% elsif type == "link" %>
-				<% if post.url == "http://www.google.com" %>
+				<% if post.url.include?('google') %>
 					<a href="<%= post.url %>"><%= image_tag 'goo.png' %></a>
 				<% elsif post.thumbnail != "no_image" %>
+					<h6 class="note-text"><%# post.title %></h6>
 					<a href="<%= post.url %>"><%= image_tag(post.thumbnail, :class =>"thumb-img") %></a>
 				<% else %>
 					<a href="<%= post.url  %>" class='link-text string-url'><%= post.url %></a>
@@ -33,11 +34,11 @@
 			<!--THIS NEEDS CHANGING!!!!!-->
 				<ul class='unstyled'>
 					<!-- <h1><%# @post_last_comments.first %></h1> -->
-				<%# @last_comments.each do |comment| %>
+				<% @last_comments.each do |comment| %>
 					<li>
-						<!-- <a href="/posts/<%# comment.post.id %>" data-id="<%#comment.post.id%>" class="follow-text"><%# comment.body %></a> | <a href="/follow/comment/<%# comment.id %>" class="follow-user"> <%# comment.user.id %></a> -->
+						<a href="/posts/<%= comment.post.id %>" data-id="<%= comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a> 
 					</li>
-				<%# end %>
+				<% end %>
 				</ul>
 			</div>
 		</div>
