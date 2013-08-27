@@ -38,6 +38,8 @@ Flapjack::Application.routes.draw do
 
   get 'posts/five/:id', to: "posts#last_five_from_user"
 
+  get 'posts/:id/last_five_comments', to: "posts#last_five_comments_for_post"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

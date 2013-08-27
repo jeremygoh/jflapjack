@@ -36,13 +36,20 @@
 		<div id='post-feeder'>	
 			<div class='multi-comment-overlay'>
 			<!--THIS NEEDS CHANGING!!!!!-->
-				<ul class='unstyled'>
+				<ul class='unstyled page-load-comments-overlay' id='comments-overlay-post-<%= post.id%>'>
 					<!-- <h1><%# @post_last_comments.first %></h1> -->
-				<% @last_comments.each do |comment| %>
+
+
+
+
+
+
+
+<!-- 				<%# @last_comments.each do |comment| %>
 					<li>
-						<a href="/posts/<%= comment.post.id %>" data-id="<%= comment.post.id%>" class="follow-text"><%= comment.body %></a> | <a href="/follow/comment/<%= comment.id %>" class="follow-user"> <%= comment.user.id %></a> 
+						<a href="/posts/<%#= comment.post.id %>" data-id="<%#= comment.post.id%>" class="follow-text"><%#= comment.body %></a> | <a href="/follow/comment/<%#= comment.id %>" class="follow-user"> <%#= comment.user.id %></a> 
 					</li>
-				<% end %>
+				<%# end %> -->
 				</ul>
 			</div>
 		</div>

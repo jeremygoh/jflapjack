@@ -82,19 +82,19 @@
 
 //hover activates cursor and goes away when unhover
 
-  $(function(){    
-    $('div.post').on('click', function(){
-      $(this).find("input[type='text']").focus();
-        $(this).find("input[type='image']").show();
-      });
-  });
+  // $(function(){    
+  //   $('div.post').on('click', function(){
+  //     $(this).find("input[type='text']").focus();
+  //       $(this).find("input[type='image']").show();
+  //     });
+  // });
 
-  $(function(){    
-      $('div.post').on('submit', function(){
-          $(this).find("input[type='text']").blur();
-          $(this).find("input[type='image']").hide();
-      });
-  });
+  // $(function(){    
+  //     $('div.post').on('submit', function(){
+  //         $(this).find("input[type='text']").blur();
+  //         $(this).find("input[type='image']").hide();
+  //     });
+  // });
 
 
   // $(".post").hover(  
@@ -116,5 +116,37 @@
 
 
 </script>
+
+        <script>
+          commentOverlayOnPageLoad = function(){
+
+                $('.page-load-comments-overlay').each(function(){
+                    var idAttr = $(this).attr("id")
+                    var id = idAttr.split("-").pop()
+                    $.get("/posts/"+ id + "/last_five_comments", function(comments){
+                      $(comments).each(function(){
+                        $("#" + idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>')
+
+                      })
+                      
+                    })
+
+
+                    
+
+
+
+                  })
+
+
+          }
+
+          window.onload = commentOverlayOnPageLoad();
+        
+              // get the post id from the id of each selection
+              // use the id to make a get request
+              // with response of get request, loop through and append each as an li element
+
+          </script>
 </body>
 </html>
