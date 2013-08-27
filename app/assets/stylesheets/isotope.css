@@ -256,11 +256,14 @@ a.string-url{
 }
 
 .single-comment-overlay{
+  z-index: 10000;
+  position: relative;
   bottom: 0px;
   height: 30px;/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-  background-color: black;
+  background-color: hsl(0,0%,30%);
   padding-bottom: 20px;
-  opacity:0.7;
+
+
 }
 
 .multi-comment-overlay{
