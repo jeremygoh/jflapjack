@@ -104,11 +104,13 @@
   // });
 
     $(".post").hover(
-      function(){$(this).find('.multi-comment-overlay').animate({bottom: 50}, 900);
+      function(){
+        $(this).find('.multi-comment-overlay').stop(true, false).animate({bottom: 50}, 1050);
     }
     // );
       , 
-        function(){$(this).find('.multi-comment-overlay').delay(2000).animate({bottom: -455}, 900);
+        function(){
+          $(this).find('.multi-comment-overlay').stop(true, false).delay(300).animate({bottom: -455}, 1050);
       });
 
 
