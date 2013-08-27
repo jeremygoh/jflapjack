@@ -40,21 +40,43 @@
 	background-color: white;
 }
 #admin-parts{
-	width:250px;
+	width:0px;
 	float:right;
 	clear:right;
 	background-color: black;
     opacity:0.8;
     height:100%;
 }
-#admin-arrow{
+
+#admin-button{
+  position: relative;
 	float:left;
 	/*background-color: white;*/
 	height:100%;
-    opacity:1;
-    clear:left;
+  opacity:1;
+  clear:left;
+  width: 73px;
 }
-#admin-arrow{
+
+#tab{
+  position: absolute;
+  top: 44%;
+}
+
+#pullout{
+  -webkit-transform: rotate(-90deg);
+-moz-transform: rotate(-90deg);
+-ms-transform: rotate(-90deg);
+-o-transform: rotate(-90deg);
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+background-color: #4389C0;
+font-size: 25px;
+color: white;
+padding: 10px;
+border-radius: 5%/48%;
+}
+
+#admin-button{
 	cursor: pointer;
 	}
 #admin-title{
@@ -136,24 +158,28 @@ h5.admin{
 		<div id='feeder-post'><!--THIS NEEDS CHANGING!!!!!-->
 		</div>
 	</div>
-	<div id='admin-arrow'>
-		<ul id="tab">
-			<li>
-				<%= image_tag 'arrowleft.png', :id => 'arrow' %> 
+	<div id='admin-button'>
+		<div id="tab">
+        <div id="pullout">Flapjack</div>
+<!-- 				<%= image_tag 'arrowleft.png', :id => 'arrow' %>  -->
 			<!-- post.photo.url(:large) %><img id="arrow" onclick="toggle('box');" src="/images/arrowleft.png"> -->
-			</li>
-	  </ul>
+    </div>
 	</div>
 </div>
 <script>
 
-$( '#admin-arrow' ).click(function() {
-  if ($("#admin-parts").is(":hidden")) {
-		$("#admin-parts").show('slide',{direction:'right'},1000);
-	} else {
-		$("#admin-parts").hide('slide',{direction:'right'},1000);
-	}
-});
+
+$('#admin-button').click(function(){
+  if($(this).hasClass('revealed')) {
+    $('#admin-parts').animate({width: "0"},920);
+    $(this).removeClass('revealed');
+  } else {
+    $('#admin-parts').animate({width: "250"},920);
+    $(this).addClass('revealed');
+  }
+})
+
+
 
 
       // filtering
