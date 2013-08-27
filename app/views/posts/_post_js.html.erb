@@ -84,7 +84,7 @@ function appendPost(post){
         $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
         $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
         
-        $('#admin-feeder li:first-child').remove()
+        // $('#admin-feeder li:first-child').remove()
 
         //FIX THE LENGTH OF THE LIST FOR A POST
         bodyHeight = $("#post-"+comment.post_id).find('.post-body-photo').height() || $("#post-"+comment.post_id).find('.post-body-link').height() || $("#post-"+comment.post_id).find('.post-body-video').height() || $("#post-"+comment.post_id).find('.post-body-note').height()
@@ -92,7 +92,7 @@ function appendPost(post){
         currentSizeOfList =  $("#post-"+comment.post_id).find('#post-feeder li').size()
         maxSizeOfList =  Math.round(bodyHeight / 20)
 
-        if ( currentSizeOfList >= maxSizeOfList)
+        if ( currentSizeOfList > maxSizeOfList)
         {
           $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
         }
