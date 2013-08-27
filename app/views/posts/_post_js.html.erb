@@ -80,7 +80,32 @@ function appendPost(post){
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({"opacity": "0.15"},"slow").animate({"opacity": "1"},
             "slow")
-        $('#feed ul').prepend("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+        
+        $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+        $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+        
+        $('#admin-feeder li:first-child').remove()
+
+        //FIX THE LENGTH OF THE LIST FOR A POST
+        bodyHeight = $("#post-"+comment.post_id).find('.post-body-photo').height() || $("#post-"+comment.post_id).find('.post-body-link').height() || $("#post-"+comment.post_id).find('.post-body-video').height() || $("#post-"+comment.post_id).find('.post-body-note').height()
+        
+        currentSizeOfList =  $("#post-"+comment.post_id).find('#post-feeder li').size()
+        maxSizeOfList =  Math.round(bodyHeight / 20)
+
+        if ( currentSizeOfList >= maxSizeOfList)
+        {
+          $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
+        }
+
+        //FIX THE LENGTH OF THE LIST FOR A POST
+        adminListBodyHeight = $('#admin-feeder').height()
+        currentSizeOfAdminList = $('#admin-feeder li').size()
+        maxSizeOfAdminList =  Math.round(adminListBodyHeight / 20)
+
+        if ( currentSizeOfAdminList >= maxSizeOfAdminList)
+        {
+          $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
+        }
 
         displayPreview();
         followByComment(); 
