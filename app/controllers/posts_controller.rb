@@ -18,12 +18,17 @@ class PostsController < ApplicationController
     @posts.keep_if{|post| get_size_multiplier(post) > 0.3 }       ###!!!!!!THIS CONTROLS WHETHER A POST IS DISPLAYED BASED ON SIZE!!!!!!!
     # @post_last_comments = Post.last.comments
     @last_comments = Comment.find(:all, :order => "created_at desc", :limit => 10)
+
  
   end
 
   def show
     @last_comments = Comment.find(:all, :order => "created_at desc", :limit => 10)
+    
     @post = Post.find(params[:id])
+
+    @last_post_comments = Post.find(params[:id]).comments.find(:all, :order => "created_at desc", :limit => 10)
+
     render layout: nil
   end
 
