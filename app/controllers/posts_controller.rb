@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def last_five_comments_for_post
-      render :json => Post.find(params[:id]).comments(:order => "created_at desc", :limit => 5).to_json
+      render :json => Post.find(params[:id]).comments(:order => "created_at desc", :limit => 5).reverse.to_json
   end
 
 end
