@@ -169,7 +169,12 @@ function addLastFivePosts(user){
    $('#iso-container form').on('submit',function(event){
     event.preventDefault();
     //console.log(event) 
-    $.post("/comments", $(this).serialize());
+    form = this
+    $.post("/comments", $(this).serialize(), function(){
+    $(form).find("input[type='text']").attr('placeholder', '').val('');
+
+    });
+
    })
 
  </script>
