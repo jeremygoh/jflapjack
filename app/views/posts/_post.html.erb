@@ -15,7 +15,11 @@
 				<% end %>
 			<% elsif type == "photo" %>
 				<div class =  "<%= type %>">
-					<%= image_tag post.photo.url(:large) %>
+					<% if !post.cropped? %>
+						<%= image_tag post.photo.url(:square)  %>
+					<% else %>
+						<%= image_tag post.photo.url(:large)  %>
+					<% end %>
 				</div>
 			<% else %>
 				<div class =  "<%= type %>">

@@ -4,9 +4,6 @@ class Photo < Post
 
   validates_presence_of :caption, :photo, :type
 
-
-  after_update :reprocess_photo, :if => :cropping?
-  
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
@@ -18,14 +15,13 @@ class Photo < Post
   end
 
   def photo_url
-    self.photo.url(:large)
+    if !self.cropped?
+      self.photo.url(:square)
+    else
+      self.photo.url(:large)
+    end
   end
 
   private
-  
-  def reprocess_photo
-    photo.reprocess!
-  end
-
 
 end
