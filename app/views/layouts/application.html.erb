@@ -112,8 +112,7 @@
         function(){
           $(this).find('.multi-comment-overlay').stop(true, false).delay(300).animate({bottom: -455}, 1050);
       });
-
-
+    
 
 </script>
 
@@ -123,24 +122,31 @@
                 $('.page-load-comments-overlay').each(function(){
                     var idAttr = $(this).attr("id")
                     var id = idAttr.split("-").pop()
+
                     $.get("/posts/"+ id + "/last_five_comments", function(comments){
 
-
                       //calculate heights to determine number of posts to append
-                      var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height();
-                      var maxSizeOfList1 =  Math.round(bodyHeight1 / 20);
+                      var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
                       
-                      if(comments.length - maxSizeOfList1 >0)
+                      var captionHeight = $("#post-"+id).find('.caption').height();
+                      
+                      var totalHeight = bodyHeight1+captionHeight;
+
+                      maxSizeOfList1 =  Math.round(totalHeight / 20);
+                      
+                      if(comments.length - maxSizeOfList1 > 0)
                       {
+                          //console.log(comments.slice(16))
                          sliceNumber = comments.length - maxSizeOfList1
                       }
                       else{
                          sliceNumber = 0
                       }
                       clippedComments = comments.slice(sliceNumber)
-
+                      //console.log(idAttr.split("-").pop())//clippedComments[0])
+                      //console.log(idAttr)//clippedComments[0])
                       $(clippedComments).each(function(){
-                            $("#" + idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>');
+                            $("#"+idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>');
                            
                       })                
                     })

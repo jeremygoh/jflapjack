@@ -23,7 +23,7 @@
 				</div>
 			<% else %>
 				<div class =  "<%= type %>">
-					<a href="<%= post.youtube_url %>" class='link-text'>www.youtube.com</a>
+					<a href="<%= post.youtube_url %>" class='link-text'><img src='<%= youtube_thumb_url(post.youtube_url,1) %>' class='youvid'></a>
 				</div>
 			<% end %>
 		</div>
@@ -68,4 +68,14 @@
 			</div>
 		<!-- <h1><%= get_size_multiplier(post) %></h1> -->
 </div>
+
+
+
+
+
+
+
+
+
+
 
