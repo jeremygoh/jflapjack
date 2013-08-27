@@ -40,7 +40,7 @@
 	background-color: white;
 }
 #admin-parts{
-	width:250px;
+	width:0px;
 	float:right;
 	clear:right;
 	background-color: black;
@@ -147,13 +147,18 @@ h5.admin{
 </div>
 <script>
 
-$( '#admin-arrow' ).click(function() {
-  if ($("#admin-parts").is(":hidden")) {
-		$("#admin-parts").show('slide',{direction:'right'},1000);
-	} else {
-		$("#admin-parts").hide('slide',{direction:'right'},1000);
-	}
-});
+
+$('#admin-arrow').click(function(){
+  if($(this).hasClass('revealed')) {
+    $('#admin-parts').animate({width: "0"},1000);
+    $(this).removeClass('revealed');
+  } else {
+    $('#admin-parts').animate({width: "250"},1000);
+    $(this).addClass('revealed');
+  }
+})
+
+
 
 
       // filtering
