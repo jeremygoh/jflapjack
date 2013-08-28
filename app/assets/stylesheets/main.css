@@ -333,7 +333,7 @@ img.thumb-img{
   height:100%;
   opacity:1;
   clear:left;
-  width: 73px;
+  width: 76px;
 }
 
 #tab{
@@ -352,10 +352,11 @@ font-size: 25px;
 color: white;
 padding: 10px;
 border-radius: 5%/48%;
+cursor: pointer;
 }
 
 #admin-button{
-  cursor: pointer;
+  
   }
 #admin-title{
   font-size:40px;
@@ -388,4 +389,12 @@ h5.admin{
 }
 .photobox{
   width:60%;
+}
+
+.icon-th-list.icon-white{
+color: white;
+font-size: 30px;
+bottom: 8px;
+float: right;
+padding-top: 10px;
 }
