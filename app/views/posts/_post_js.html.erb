@@ -84,7 +84,34 @@ function appendPost(post){
            var count = $("#post-"+comment.post_id).find('#post-feeder ul li').size()
         
         //append to feed
+        
         $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>follow-" + comment.user + "</a></li>");
+
+                               //follow by comment
+        $('a.follow-user').on('click', function(event)
+        {
+              event.preventDefault();
+              //alert("skjfhksdjhfsdkjfhsdkfjh")
+              var address = $(this).attr('href');
+              var commentID = $(this).attr('href').split("/").pop();
+              // console.log(commentID)
+            $.post(address, function(someresponse)
+            {
+              tester1 = someresponse;
+              if(someresponse.already_following != "1"){              //won't add a socket listener or add new posts if already following that user
+                    $.get("/follow/user_from_comment/" + commentID, function(response){
+                        var user = response.user_id.toString();
+                       addSocketListenerForUser(user.toString());      
+                        addLastFivePosts(user);
+                  })
+              }
+              
+           
+            })
+        })
+
+
+
 
         //append to comment overlay
         // $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
