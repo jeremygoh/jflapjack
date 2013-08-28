@@ -175,7 +175,7 @@ overlayHover = function(){
                                    $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
                                 }
                                       //follow by comment
-        $('a.follow-user').on('click', function(event)
+        $('a.follow-user').unbind("click").on('click', function(event)
         {
               event.preventDefault();
               //alert("skjfhksdjhfsdkjfhsdkfjh")

@@ -129,7 +129,7 @@ function appendPost(post){
                                    $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
                                 }
                                       //follow by comment
-        $('a.follow-user').on('click', function(event)
+        $('a.follow-user').unbind("click").on('click', function(event)
         {
               event.preventDefault();
               //alert("skjfhksdjhfsdkjfhsdkfjh")
@@ -218,11 +218,77 @@ function appendPost(post){
            var count = $("#post-"+comment.post_id).find('#post-feeder ul li').size()
         
         //append to feed
+
+
         
-        $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>follow-" + comment.user + "</a></li>");
+         $.ajax({
+                               async: false,
+                               type: 'GET',
+                               url: "/follows/" + comment.user + "/followed",
+                               success: function(data) {
+                                    //callback
+                                if (data == -1)
+                                  {
+                
+                                   $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a> </li>');  
+                                  }
+                                else if(data == 1)  //following user
+                                {
+                         
+                                   $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/unfollow/comment/' + comment.id + '" class="follow-user">unfollow</a></li>');  
+                                }
+                                else{
+                     
+                                    $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/follow/comment/' + comment.id + '" class="follow-user">follow - ' + comment.user + '</a></li>');  
+                                }
+
+                               }
+                          });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>follow-" + comment.user + "</a></li>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                //follow by comment
-        $('a.follow-user').on('click', function(event)
+        $('a.follow-user').unbind("click").on('click', function(event)
         {
               event.preventDefault();
               //alert("skjfhksdjhfsdkjfhsdkfjh")
