@@ -38,5 +38,4 @@ class FollowsController < ApplicationController
      render :json => is_followed.to_json
   end
 
-
 end

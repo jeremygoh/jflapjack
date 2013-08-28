@@ -10,43 +10,38 @@
 <%= render 'side_admin' %>
 
 <% @posts.each do |post| %>
-
 	<script>
-				// dynamically get sizes
-	      $(document).ready(function() {
+	// dynamically get sizes
+	$(document).ready(function() {
 
 
-	      	$('.alert').delay(2000).slideUp('slow')
-	      	
-
-	      	scale = <%= get_size_multiplier(post) %>
-	      	
-	     		postWidth = $('#post-<%= post.id %>').width();
-	     		newWidth = postWidth*scale
-					postHeight = $('#post-<%= post.id %>').height();
-	     		newHeight = postHeight*scale
-	     		$('#post-<%= post.id %>').width(newWidth);
-	     		$('#post-<%= post.id %>').height(newHeight);
-	     		//$('#post-<%= post.id %>').css({height: 'auto'});
-	     		$('#caption-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
-	     		$('#caption-<%= post.id %>').css("transform-origin","top left");
-
-	    //  		$('#body-<%= post.id %>.post-body-note').css("transform","scale("+scale+","+scale+")");
-					// $('#body-<%= post.id %>.post-body-note').css("transform-origin","middle middle");
-	
-
-	     		$('#body-<%= post.id %>.post-last-comment').css("transform","scale("+scale+","+scale+")");
-	     		$('#body-<%= post.id %>.post-last-comment').css("transform-origin","bottom left");
+	  $('.alert').delay(2000).slideUp('slow')
 
 
-	     		$('#comment-<%= post.id %>').css("transform","scale("+scale+","+scale+")");
-	     		$('#comment-<%= post.id %>').css("transform-origin","left 25px");
-				});
+	  scale = <%= get_size_multiplier(post) %>
 
+	  postWidth = $('#post-<%= post.id %>').width();
+	  newWidth = postWidth * scale
+	  postHeight = $('#post-<%= post.id %>').height();
+	  newHeight = postHeight * scale
+	  $('#post-<%= post.id %>').width(newWidth);
+	  $('#post-<%= post.id %>').height(newHeight);
+	  //$('#post-<%= post.id %>').css({height: 'auto'});
+	  $('#caption-<%= post.id %>').css("transform", "scale(" + scale + "," + scale + ")");
+	  $('#caption-<%= post.id %>').css("transform-origin", "top left");
+
+	  //      $('#body-<%= post.id %>.post-body-note').css("transform","scale("+scale+","+scale+")");
+	  // $('#body-<%= post.id %>.post-body-note').css("transform-origin","middle middle");
+
+
+	  $('#body-<%= post.id %>.post-last-comment').css("transform", "scale(" + scale + "," + scale + ")");
+	  $('#body-<%= post.id %>.post-last-comment').css("transform-origin", "bottom left");
+
+
+	  $('#comment-<%= post.id %>').css("transform", "scale(" + scale + "," + scale + ")");
+	  $('#comment-<%= post.id %>').css("transform-origin", "left 25px");
+	});
 	</script>
-	<% end %>
+<% end %>
 
-	<%= render "post_js" %>
-	<%# render "infinite_scroll_js" %>
-
- 	
+<%= render "post_js" %>

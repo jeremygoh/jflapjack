@@ -2,25 +2,25 @@
   <div id='crop-container'>
   <script>
   $(function() {
-    $('#cropbox').Jcrop({
-      onChange: update_crop,
-      onSelect: update_crop,
-      setSelect: [0, 0, 200, 200],
-      aspectRatio: 1 //3/2
-    });
+  $('#cropbox').Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    setSelect: [0, 0, 200, 200],
+    aspectRatio: 1 //3/2
   });
+});
 
-  function update_crop(coords) {
-    var rx = 300/coords.w; //ADJUST THIS FOR PREVIEW WINDOW -->
-    var ry = 300/coords.h; //ADJUST THIS FOR PREVIEW WINDOW -->
-    //console.log("<%= @photo.photo_geometry(:large).inspect %>");
-    $('#crop-preview').css({
-      	width: Math.round(rx * <%= @photo.photo_geometry(:large).width %>) + 'px',
-      height: Math.round(ry * <%= @photo.photo_geometry(:large).height %>) + 'px',
-      marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-      marginTop: '-' + Math.round(ry * coords.y) + 'px'
-    });
-    var ratio = <%= @photo.photo_geometry(:original).width %> / <%= @photo.photo_geometry(:large).width %>;
+function update_crop(coords) {
+  var rx = 300 / coords.w; //ADJUST THIS FOR PREVIEW WINDOW -->
+  var ry = 300 / coords.h; //ADJUST THIS FOR PREVIEW WINDOW -->
+  //console.log("<%= @photo.photo_geometry(:large).inspect %>");
+  $('#crop-preview').css({
+    width: Math.round(rx * <%= @photo.photo_geometry(: large).width %> ) + 'px',
+    height: Math.round(ry * <%= @photo.photo_geometry(: large).height %> ) + 'px',
+    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+  });
+  var ratio = <%= @photo.photo_geometry(: original).width %> / <%= @photo.photo_geometry(:large).width %>;
     $("#crop_x").val(Math.round(coords.x * ratio));
     $("#crop_y").val(Math.round(coords.y * ratio));
     $("#crop_w").val(Math.round(coords.w * ratio));

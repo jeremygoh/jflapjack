@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
   end
 
   def is_being_followed?(possible_follower)
-
     if self.followers.include?(possible_follower)
       return "1"
     else
