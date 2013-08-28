@@ -79,13 +79,14 @@ h1, h2, #super-list, .post, .tagline, #index-list,
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 #window-pane {
   border: 1px solid #999;
   height:95%;
   margin:18px;
-  overflow:hidden;
+  overflow:scroll;
 }
 
 #iso-container {
