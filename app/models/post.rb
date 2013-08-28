@@ -8,7 +8,8 @@ class Post < ActiveRecord::Base
   validates_length_of :caption,:maximum => 28
 
 	before_create do |post|
-     post.time = 86400
+     ##post.time = 86400
+     post.time = 94800
   end
 
   def last_comment
