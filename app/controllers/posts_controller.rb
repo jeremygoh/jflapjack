@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     if current_user   
       @followed_users_ids_in_json = current_user.followers.ids.to_json
       if !Post.followed_by(current_user).empty?
-        @posts = Post.followed_by(current_user)
+        @posts = Post.followed_by(current_user).order("updated_at desc")
       else
         get_top_five_users_posts.flatten.each do |post| #replace with top 5 users
           @posts << post
