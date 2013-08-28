@@ -244,12 +244,15 @@
     $("a.follow-text").on('click', function(event) {
       event.preventDefault();
       $.get('/posts/' + this.getAttribute("data-id"), function(data) {
-        // console.log(data);
         $('#feeder-post').html(data)
+        $("#feeder-post").find('#post-feeder').remove()
+        $("#feeder-post").find('.single-comment-overlay').remove()
       })
 
     })
   }
+
+
 
   function addLastFivePosts(user) {
     $.get('/posts/five/' + user, function(response) {

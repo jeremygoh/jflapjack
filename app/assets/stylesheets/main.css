@@ -376,3 +376,16 @@ h5.admin{
   font-weight: normal;
 }
 
+#photo-crop{
+  float: left;
+  clear: left
+}
+
+#photo-preview{
+  float: right;
+  clear: right;
+  padding-left:70px;
+}
+.photobox{
+  width:60%;
+}
