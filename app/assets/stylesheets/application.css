@@ -106,4 +106,7 @@ vertical-align: middle;
 .follow-user{
 float: right;
 }
+a:hover.follow-text{
+  text-decoration:none;
+}
 

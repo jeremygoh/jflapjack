@@ -9,6 +9,16 @@ class FollowsController < ApplicationController
 
 	end
 
+  def unfollow_by_comment
+      
+      if current_user
+          following = Comment.find(params[:id]).user
+          current_user.followers.delete(following)
+          current_user.save
+      end
+
+  end
+
   def user_id_from_comment_id
       if current_user
         user_id = Comment.find(params[:id]).user.id
