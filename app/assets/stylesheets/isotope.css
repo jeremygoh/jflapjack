@@ -71,7 +71,14 @@ h1, h2, #super-list, .post, .tagline, #index-list,
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+.alert{
+  z-index: 12;
+position: absolute;
+width: 33%;
+text-align: center;
+margin-left: 30%;
 
+}
 
 /**** Isotope styles ****/
 

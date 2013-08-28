@@ -1,20 +1,21 @@
-<%# @video.errors.full_messages.each do |message| %>
-    <p><%# message %></p>
-<%# end %>
+<div id="window-pane">
+	<% @video.errors.full_messages.each do |message| %>
+		    <p><%= message %></p>
+	<% end %>
 
-<h2>Create New Photo or Add Youtube Link</h2>
-<%= form_for @video, :url => videos_path, :html => { :multipart => true } do |f| %>
-  
-  <%= f.label :caption %>
-  <%= f.text_field :caption %>
+	<h2>Create New Photo or Add Youtube Link</h2>
+	<%= form_for @video, :url => videos_path, :html => { :multipart => true } do |f| %>
+	  
+	  <%= f.label :caption %>
+	  <%= f.text_field :caption %>
 
-  <%= f.label :video %>
-  <%= f.file_field :video %>
+	  <%= f.label :video %>
+	  <%= f.file_field :video %>
 
-  <%= f.label :youtube_url %>
-  <%= f.url_field :youtube_url %>
+	  <%= f.label :youtube_url %>
+	  <%= f.url_field :youtube_url %>
 
-  <%= f.submit %>
-<% end %>
-
+	  <%= f.submit %>
+	<% end %>
+</div>
 <!-- http://www.youtube.com/watch?v=aKjVYQ0abOM -->

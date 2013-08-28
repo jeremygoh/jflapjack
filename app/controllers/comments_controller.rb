@@ -8,10 +8,11 @@ before_action :redirect_if_not_signed_in
     if comment.save
       ##INCREASE THE SIZE OF THE POST BY 30 MIN
       @post = Post.find(comment.post_id)
-      @post.time += 1800
+      @post.time += 3600
       @post.save
       puts @post.time.inspect
       websocket[:comment].trigger 'new',{post_id: comment.post.id, id: comment.id, body: comment.body, user: comment.user.id}
+      flash[:alert] = "New commment added."
      else
       flash[:alert] = "Failed to save comment"
     end

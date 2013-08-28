@@ -14,6 +14,11 @@
 	<script>
 				// dynamically get sizes
 	      $(document).ready(function() {
+
+
+	      	$('.alert').delay(2000).slideUp('slow')
+	      	
+
 	      	scale = <%= get_size_multiplier(post) %>
 	      	
 	     		postWidth = $('#post-<%= post.id %>').width();

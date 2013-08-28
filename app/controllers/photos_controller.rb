@@ -34,7 +34,7 @@ before_action :redirect_if_not_signed_in
           @photo.cropped = true
           @photo.save
           websocket[current_user.id.to_s.to_sym].trigger 'new', @photo.to_json(only: [:id, :type, :caption], :methods => [:photo_url])
-          flash[:notice] = "Successfully updated photo."
+          flash[:notice] = "Successfully added a photo."
           redirect_to '/'
         else
           render :action => "crop"
