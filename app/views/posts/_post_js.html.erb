@@ -84,7 +84,7 @@ function appendPost(post){
            var count = $("#post-"+comment.post_id).find('#post-feeder ul li').size()
         
         //append to feed
-        $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+        $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>follow-" + comment.user + "</a></li>");
 
         //append to comment overlay
         // $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
@@ -177,7 +177,7 @@ function appendPost(post){
         }
 
         displayPreview();
-        followByComment(); 
+        ///followByComment(); 
     });
 
 

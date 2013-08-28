@@ -63,11 +63,12 @@ div.post:hover input[type=text]{
 
 #admin-feeder{
   background-color: #eee;
-  width: 100%;
+  width: 90%;
   height: 250px;
   overflow: hidden;
   border: 1px black solid;
   padding-left:13px;
+  padding-right: 15px;
 }
 
 #feeder-post{

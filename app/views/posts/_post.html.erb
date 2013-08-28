@@ -61,7 +61,7 @@
 					<form method="post" action="/comments" class="post-comments">
 						<%= token_tag nil %>
 						<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
-						<input type="text" name="comment[body]" placeholder="<%= post.last_comment %>">
+						<input type="text" name="comment[body]" placeholder="<%= post.last_comment %>" maxlength="60">
 						<input type="image" value=" ">
 					</form>
 				</div>
