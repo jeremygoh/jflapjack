@@ -154,10 +154,17 @@
                       //console.log(idAttr)//clippedComments[0])
                       $(clippedComments).each(function(){
                         var specificComment = this;
-                            var userIsFollowed = $.get("/follows/" + this.user_id + "/followed", function(response){
-
-
-                                if(response ==1)  //following user
+                            $.ajax({
+                               async: false,
+                               type: 'GET',
+                               url: "/follows/" + this.user_id + "/followed",
+                               success: function(data) {
+                                    //callback
+                                if (data == -1)
+                                  {
+                                  $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body +'</a> </li>');  
+                                  }
+                                else if(data == 1)  //following user
                                 {
                                   $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">unfollow</a></li>');  
                                 }
@@ -165,8 +172,10 @@
                                    $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
                                 }
 
+                               }
+                          });
 
-                            })
+
                            
                            
                       })                

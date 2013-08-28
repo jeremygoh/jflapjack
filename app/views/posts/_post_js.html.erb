@@ -89,7 +89,30 @@ function appendPost(post){
         //append to comment overlay
         // $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
 
-        $("#comments-overlay-post-" + comment.post_id).append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
+                        $.ajax({
+                               async: false,
+                               type: 'GET',
+                               url: "/follows/" + comment.user + "/followed",
+                               success: function(data) {
+                                    //callback
+                                if (data == -1)
+                                  {
+                
+                                  $("#post-"+comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a href="/posts/' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a> </li>');  
+                                  }
+                                else if(data == 1)  //following user
+                                {
+                         
+                                  $("#post-"+comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a href="/posts/' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/follow/comment/' + comment.id + '" class="follow-user">unfollow</a></li>');  
+                                }
+                                else{
+                     
+                                   $("#post-"+comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a href="/posts/' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/follow/comment/' + comment.id + '" class="follow-user">follow - ' + comment.user + '</a></li>');  
+                                }
+
+                               }
+                          });
+
 
         //calculate height and number of posts that can fit in each comment
 
