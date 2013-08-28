@@ -100,6 +100,7 @@
   //     function(){$(".multi-comment-overlay").animate({bottom: -407}, 500);  
   // });
 
+overlayHover = function(){
     $(".post").hover(
       function(){
         $(this).find('.multi-comment-overlay').stop(true, false).animate({bottom: 50}, 1050);
@@ -109,7 +110,9 @@
         function(){
           $(this).find('.multi-comment-overlay').stop(true, false).delay(300).animate({bottom: -455}, 1050);
       });
-    
+    }
+
+    overlayHover();
 
 </script>
 

@@ -64,13 +64,147 @@ function appendPost(post){
           }
 
         var caption = $("<div id='caption-" + post.id +"' class='caption fade-out' ><h5 class='lead'>" + post.caption + "</h5></div>")
-        var comment_overlay = $("<div id='feeder'><div class='multi-comment-overlay'><ul class='unstyled'><li>"+"!!!!COMMENT!!!!!"+"</li></ul></div></div>")
+        var comment_overlay = $("<div id='post-feeder'><div class='multi-comment-overlay'><ul class='unstyled'></ul></div></div>")
 
         var single_comment = $("<div class='single-comment-overlay'><div id='comment-" + post.id + "' class = 'post-last-comment' ><form method='post' action='/comments' class='post-comments'><input type='hidden' name='comment[post_id]' value='" + post.id + "'><input type='text' name='comment[body]' placeholder=''><input type='image' value=''></form></div></div>")
 
         total = $(outer)  .append(  outer_body.append(post_body))  .append(caption).append(comment_overlay).append(single_comment);
 
         $('#iso-container').isotope( 'insert', total)
+        overlayHover();
+
+
+
+                    var id = post.id
+
+                    $.get("/posts/"+ id + "/last_five_comments", function(comments){
+
+                      //calculate heights to determine number of posts to append
+                      // var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      
+                      // var captionHeight = $("#post-"+id).find('.caption').height();
+                      
+                      // var totalHeight = bodyHeight1+captionHeight;
+
+
+
+                      var bodyHeight1 = $("#post-"+ id).find('.post-body-photo').outerHeight(true) || $("#post-"+id).find('.post-body-link').outerHeight(true) || $("#post-"+id).find('.post-body-video').outerHeight(true) || $("#post-"+id).find('.post-body-note').outerHeight(true); 
+
+                        // var bodyHeight2 = $("#post-"+ id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      
+                      var captionHeight = $("#post-"+id).find('.caption').outerHeight(true);
+                      
+                      var totalHeight = bodyHeight1+captionHeight;
+
+                      maxSizeOfList1 =  Math.round(totalHeight / 20);
+                      
+                      if(comments.length - maxSizeOfList1 > 0)
+                      {
+                          //console.log(comments.slice(16))
+                         sliceNumber = comments.length - maxSizeOfList1
+                      }
+                      else{
+                         sliceNumber = 0
+                      }
+                      clippedComments = comments.slice(sliceNumber)
+                      //console.log(idAttr.split("-").pop())//clippedComments[0])
+                      //console.log(idAttr)//clippedComments[0])
+                      $(clippedComments).each(function(){
+                        var specificComment = this;
+                            $.ajax({
+                               async: false,
+                               type: 'GET',
+                               url: "/follows/" + this.user_id + "/followed",
+                               success: function(data) {
+                                    //callback
+                                if (data == -1)
+                                  {
+                                  $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body +'</a> </li>');  
+                                  }
+                                else if(data == 1)  //following user
+                                {
+                                  $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="follow-user">unfollow</a></li>');  
+                                }
+                                else{
+                                   $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
+                                }
+                                      //follow by comment
+        $('a.follow-user').on('click', function(event)
+        {
+              event.preventDefault();
+              //alert("skjfhksdjhfsdkjfhsdkfjh")
+              var address = $(this).attr('href');
+              var commentID = $(this).attr('href').split("/").pop();
+              // console.log(commentID)
+            $.post(address, function(someresponse)
+            {
+              tester1 = someresponse;
+              if(someresponse.already_following != "1"){              //won't add a socket listener or add new posts if already following that user
+                    $.get("/follow/user_from_comment/" + commentID, function(response){
+                        var user = response.user_id.toString();
+                       addSocketListenerForUser(user.toString());      
+                        addLastFivePosts(user);
+                  })
+              }
+              
+           
+            })
+        })
+
+
+                               }
+                          });
+
+
+                           
+                           
+                      })                
+                    })
+
+
+
+                 
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
