@@ -123,9 +123,19 @@
                     $.get("/posts/"+ id + "/last_five_comments", function(comments){
 
                       //calculate heights to determine number of posts to append
-                      var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      // var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
                       
-                      var captionHeight = $("#post-"+id).find('.caption').height();
+                      // var captionHeight = $("#post-"+id).find('.caption').height();
+                      
+                      // var totalHeight = bodyHeight1+captionHeight;
+
+
+
+                      var bodyHeight1 = $("#post-"+ id).find('.post-body-photo').outerHeight(true) || $("#post-"+id).find('.post-body-link').outerHeight(true) || $("#post-"+id).find('.post-body-video').outerHeight(true) || $("#post-"+id).find('.post-body-note').outerHeight(true); 
+
+                        // var bodyHeight2 = $("#post-"+ id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      
+                      var captionHeight = $("#post-"+id).find('.caption').outerHeight(true);
                       
                       var totalHeight = bodyHeight1+captionHeight;
 

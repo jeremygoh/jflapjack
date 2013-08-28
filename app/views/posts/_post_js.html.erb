@@ -80,31 +80,77 @@ function appendPost(post){
         $("#comment-"+comment.post_id).find('input[type="text"]').attr('placeholder',comment.body)
         $("#comment-"+comment.post_id).find('input[type="text"]').animate({"opacity": "0.15"},"slow").animate({"opacity": "1"},
             "slow")
+
+           var count = $("#post-"+comment.post_id).find('#post-feeder ul li').size()
         
+        //append to feed
         $('#admin-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
-        $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
-        
-        // $('#admin-feeder li:first-child').remove()
 
-        //FIX THE LENGTH OF THE LIST FOR A POST
-        bodyHeight = $("#post-"+comment.post_id).find('.post-body-photo').height() || $("#post-"+comment.post_id).find('.post-body-link').height() || $("#post-"+comment.post_id).find('.post-body-video').height() || $("#post-"+comment.post_id).find('.post-body-note').height()
-        
-        currentSizeOfList =  $("#post-"+comment.post_id).find('#post-feeder li').size()
-        maxSizeOfList =  Math.round(bodyHeight / 20)
+        //append to comment overlay
+        // $("#post-"+comment.post_id).find('#post-feeder ul').append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
 
-        if ( currentSizeOfList > maxSizeOfList)
-        {
-          $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
-        }
+        $("#comments-overlay-post-" + comment.post_id).append("<li><a href=/posts/" + comment.post_id + " data-id=" + comment.post_id + " class='follow-text'>" + comment.body + "</a>" + "|" + "<a href='/follow/comment/" + comment.id + "' class='follow-user'>" + comment.user + "</a></li>");
 
-        //FIX THE LENGTH OF THE LIST FOR A POST
+        //calculate height and number of posts that can fit in each comment
+
+                      var id = comment.post_id
+
+                      var bodyHeight2 = $("#post-"+ id).find('.post-body-photo').outerHeight(true) || $("#post-"+id).find('.post-body-link').outerHeight(true) || $("#post-"+id).find('.post-body-video').outerHeight(true) || $("#post-"+id).find('.post-body-note').outerHeight(true); 
+
+                        // var bodyHeight2 = $("#post-"+ id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      
+                      var captionHeight2 = $("#post-"+id).find('.caption').outerHeight(true);
+                      
+                      var totalHeight2 = bodyHeight2+captionHeight2;
+
+                      maxSizeOfList2 =  Math.round(totalHeight2 / 20);
+                          //link should be 16.66 //photo 19.115
+                      console.log("max size of list is " + maxSizeOfList2 + "| total height is " + totalHeight2)
+        //check number of li items currently in overlay
+
+             
+               
+
+        //add one to that and check if within max size, if not then get rid of one
+                var count = $("#post-"+comment.post_id).find('#post-feeder ul li').size()
+
+                if(count > maxSizeOfList2)
+                {
+                  console.log("count is " + count + "| comment removed")
+                 $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
+                }
+
+
+
+
+            // var bodyHeight1 = $("#post-"+id).find('.post-body-photo').height() || $("#post-"+id).find('.post-body-link').height() || $("#post-"+id).find('.post-body-video').height() || $("#post-"+id).find('.post-body-note').height(); 
+                      
+            //           var captionHeight = $("#post-"+id).find('.caption').height();
+                      
+            //           var totalHeight = bodyHeight1+captionHeight;
+
+            //           maxSizeOfList1 =  Math.round(totalHeight / 20);
+                      
+            //           if(comments.length - maxSizeOfList1 > 0)
+            //           {
+            //               //console.log(comments.slice(16))
+            //              sliceNumber = comments.length - maxSizeOfList1
+            //           }
+            //           else{
+            //              sliceNumber = 0
+            //           }
+
+
+
+        //manage comment feed in side panel
         adminListBodyHeight = $('#admin-feeder').height()
         currentSizeOfAdminList = $('#admin-feeder li').size()
-        maxSizeOfAdminList =  Math.round(adminListBodyHeight / 20)
+        maxSizeOfAdminList =  Math.round(adminListBodyHeight / 25)
 
-        if ( currentSizeOfAdminList >= maxSizeOfAdminList)
+        if ( currentSizeOfAdminList > maxSizeOfAdminList)
         {
-          $("#post-"+comment.post_id).find('#post-feeder li:first-child').remove()
+    
+          $('#admin-feeder li:first').remove();
         }
 
         displayPreview();
