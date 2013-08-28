@@ -123,7 +123,7 @@ function appendPost(post){
                                   }
                                 else if(data == 1)  //following user
                                 {
-                                  $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="follow-user">unfollow</a></li>');  
+                                  $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="unfollow-user">unfollow</a></li>');  
                                 }
                                 else{
                                    $("#"+idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
@@ -235,7 +235,7 @@ function appendPost(post){
                                 else if(data == 1)  //following user
                                 {
                          
-                                   $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/unfollow/comment/' + comment.id + '" class="follow-user">unfollow</a></li>');  
+                                   $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/unfollow/comment/' + comment.id + '" class="unfollow-user">unfollow</a></li>');  
                                 }
                                 else{
                      
