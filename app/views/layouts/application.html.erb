@@ -107,7 +107,7 @@
     // );
       , 
         function(){
-          $(this).find('.multi-comment-overlay').stop(true, false).delay(300).animate({bottom: -455}, 1050);
+          //$(this).find('.multi-comment-overlay').stop(true, false).delay(300).animate({bottom: -455}, 1050);
       });
     
 
@@ -153,7 +153,7 @@
                       //console.log(idAttr.split("-").pop())//clippedComments[0])
                       //console.log(idAttr)//clippedComments[0])
                       $(clippedComments).each(function(){
-                            $("#"+idAttr).append('<li><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a> | <a href="/follow/comment/' + this.id + '" class="follow-user">' + this.user_id + '</a></li>');
+                            $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a>  <a href="/follow/comment/' + this.id + '" class="follow-user">follow - ' + this.user_id + '</a></li>');  
                            
                       })                
                     })

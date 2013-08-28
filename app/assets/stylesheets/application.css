@@ -100,4 +100,10 @@ vertical-align: middle;
 .youvid{
   width:400px;
 }
+.comment-line{
+  width:90%;
+}
+.follow-user{
+float: right;
+}
 
