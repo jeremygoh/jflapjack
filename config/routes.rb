@@ -40,6 +40,12 @@ Flapjack::Application.routes.draw do
 
   get 'posts/:id/last_five_comments', to: "posts#last_five_comments_for_post"
 
+
+
+  #check if you are following a user
+
+  get 'follows/:id/followed', to: "follows#user_is_followed"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -16,4 +16,15 @@ class FollowsController < ApplicationController
       end
   end
 
+   def user_is_followed
+    user = User.find(params[:id])
+    if user.followers.include?(current_user)
+      is_followed = 1
+    else
+      is_followed = 0
+    end
+     render :json => is_followed.to_json
+  end
+
+
 end

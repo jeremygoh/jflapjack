@@ -153,7 +153,21 @@
                       //console.log(idAttr.split("-").pop())//clippedComments[0])
                       //console.log(idAttr)//clippedComments[0])
                       $(clippedComments).each(function(){
-                            $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + this.post_id + '" data-id="' + this.post_id + '" class="follow-text">' + this.body + '</a>  <a href="/follow/comment/' + this.id + '" class="follow-user">follow - ' + this.user_id + '</a></li>');  
+                        var specificComment = this;
+                            var userIsFollowed = $.get("/follows/" + this.user_id + "/followed", function(response){
+
+
+                                if(response ==1)  //following user
+                                {
+                                  $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">unfollow</a></li>');  
+                                }
+                                else{
+                                   $("#"+idAttr).append('<li class="comment-line"><a href="/posts/' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');  
+                                }
+
+
+                            })
+                           
                            
                       })                
                     })
