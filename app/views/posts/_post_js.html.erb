@@ -174,9 +174,11 @@
                   var user = response.user_id.toString();
                   addSocketListenerForUser(user.toString());
                   addLastFivePosts(user);
+                  //change text to followed
                 })
               }
             })
+            this.remove();
           })
 
           $('a.unfollow-user').unbind("click").on('click', function(event) {
@@ -220,7 +222,15 @@
         {
 
           $("#post-" + comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/unfollow/comment/' + comment.id + '" class="follow-user">unfollow</a></li>');
-        } else {
+        } 
+
+        else if (data== -2)
+        {
+
+          $("#post-" + comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a href="/users/sign_in" class="follow-text-sign-up">' + comment.body + '</a>  <a href="/users/sign_up" class="follow-user-sign-up">follow</a></li>');
+        }
+
+        else {
 
           $("#post-" + comment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/follow/comment/' + comment.id + '" class="follow-user">follow - ' + comment.user + '</a></li>');
         }

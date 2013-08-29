@@ -27,13 +27,17 @@ class FollowsController < ApplicationController
   end
 
    def user_is_followed
-    user = User.find(params[:id])
-    if user == current_user
-      is_followed = -1 
-    elsif user.following?(current_user)
-      is_followed = 1
+    if current_user
+        user = User.find(params[:id])
+        if user == current_user
+          is_followed = -1 
+        elsif user.following?(current_user)
+          is_followed = 1
+        else
+          is_followed = 0
+        end
     else
-      is_followed = 0
+      is_followed = -2 #not logged in
     end
      render :json => is_followed.to_json
   end
