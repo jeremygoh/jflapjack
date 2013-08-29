@@ -9,7 +9,7 @@ class VideosController < ApplicationController
     @video.user = current_user
     
     if @video.save
-      websocket[current_user.id.to_s.to_sym].trigger 'new', @video.to_json(only: [:id, :type, :caption, :youtube_url])
+      websocket[current_user.id.to_s.to_sym].trigger 'new', @video.to_json(only: [:id, :type, :caption, :youtube_url, :user_id])
       redirect_to '/'
       flash[:notice] = "Successfully added a video link."
     else

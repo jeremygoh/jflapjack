@@ -12,7 +12,7 @@ before_action :redirect_if_not_signed_in
     @note.user = current_user
     
     if @note.save
-      websocket[current_user.id.to_s.to_sym].trigger 'new', @note.to_json(only: [:id, :type, :caption, :body])
+      websocket[current_user.id.to_s.to_sym].trigger 'new', @note.to_json(only: [:id, :type, :caption, :body, :user_id])
       redirect_to '/'
       flash[:notice] = "Successfully added a note."
     else

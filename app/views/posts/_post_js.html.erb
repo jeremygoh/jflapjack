@@ -35,8 +35,8 @@
 
   //now prepends a post to the container!!!
   function appendPost(post) {
-
-    var outer = $("<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
+    console.log(post)
+    var outer = $("<div id='post-" + post.id + "' data-user='" + post.user_id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
     var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
 
     if (post.type.toLowerCase() === "note") {
@@ -106,6 +106,7 @@
             //follow by comment
             $('a.follow-user').unbind("click").on('click', function(event) {
               event.preventDefault();
+              
               //alert("skjfhksdjhfsdkjfhsdkfjh")
               var address = $(this).attr('href');
               var commentID = $(this).attr('href').split("/").pop();

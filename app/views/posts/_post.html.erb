@@ -1,5 +1,5 @@
 <% type = post.type.downcase! %>
-<div id="post-<%= post.id %>" class='post <%= 'post-'+type.downcase  %> width2 height2' data-category="<%= type %>" >
+<div id="post-<%= post.id %>" data-user="<%= post.user_id %>" class='post <%= 'post-'+type.downcase  %> width2 height2' data-category="<%= type %>" >
 		<!-- post body depending on type -->
 		<div id="body-<%= post.id %>" class = "<%= 'post-body-'+type %>">
 			<% if type == "note" %>

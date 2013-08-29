@@ -23,7 +23,7 @@ before_action :redirect_if_not_signed_in
       @link.user = current_user
 
       if @link.save
-        websocket[current_user.id.to_s.to_sym].trigger 'new', @link.to_json(only: [:id, :type, :caption, :url, :thumbnail ])
+        websocket[current_user.id.to_s.to_sym].trigger 'new', @link.to_json(only: [:id, :type, :caption, :url, :thumbnail, :user_id])
         redirect_to '/'
         flash[:notice] = "Successfully added a link."
       else

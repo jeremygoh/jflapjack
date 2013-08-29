@@ -148,6 +148,7 @@
 
               $('a.update-following').unbind("click").on('click', function(event) 
               {
+                  
                   event.preventDefault();
                   var address = $(this).attr('href');
                   var commentID = $(this).attr('href').split("/").pop();
@@ -173,6 +174,8 @@
                     $.post(address, function(someresponse) {
                       alert("PAGE UNFOLLOW")
                       tester1 = someresponse;
+                      $('#iso-container').find('[data-user="1"]').not('a').remove()
+                      $("#iso-container").isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
                       // if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
                         // $.post("/unfollow/comment/" + commentID, function(response) {})
                       // }
