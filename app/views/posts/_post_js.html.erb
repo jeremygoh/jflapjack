@@ -268,11 +268,21 @@
   $('#iso-container form').on('submit', function(event) {
     event.preventDefault();
     //console.log(event) 
-    form = this
-    $.post("/comments", $(this).serialize(), function() {
-      $(form).find("input[type='text']").attr('placeholder', '').val('');
 
-    });
+    if($("#sign-up").length === 0)
+    {
+             form = this
+              $.post("/comments", $(this).serialize(), function() {
+                $(form).find("input[type='text']").attr('placeholder', '').val('');
+
+              });
+    }
+    else
+    {
+           window.location.href = "/users/sign_in";
+    }
+
+    
 
   })
  </script>
