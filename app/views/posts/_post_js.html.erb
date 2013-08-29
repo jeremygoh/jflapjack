@@ -35,7 +35,7 @@
 
   //now prepends a post to the container!!!
   function appendPost(post) {
-    console.log(post)
+    //console.log(post)
     var outer = $("<div id='post-" + post.id + "' data-user='" + post.user_id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
     var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
 
@@ -84,9 +84,9 @@
       } else {
         sliceNumber = 0
       }
-      clippedComments = comments.slice(sliceNumber)
+      clippedComments = comments.slice(sliceNumber) 
       //console.log(idAttr.split("-").pop())//clippedComments[0])
-      //console.log(idAttr)//clippedComments[0])
+      //console.log(clippedComments)
       $(clippedComments).each(function() {
         var specificComment = this;
         $.ajax({
@@ -96,11 +96,14 @@
           success: function(data) {
             //callback
             if (data == -1) {
+              // alert("-1")
               $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="update-following follow-text">' + specificComment.body + '</a> </li>');
             } else if (data == 1) //following user
             {
+              // alert("1")
               $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="update-following unfollow-user">unfollow</a></li>');
             } else {
+              // alert("0")
               $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="update-following follow-user">follow - ' + specificComment.user_id + '</a></li>');
             }
             //follow by comment
