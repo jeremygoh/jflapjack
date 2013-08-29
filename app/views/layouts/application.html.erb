@@ -135,12 +135,12 @@
                 $("#" + idAttr).append('<li class="comment-line"><a data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a> </li>');
               } else if (data == 1) //following user
               {
-                $("#" + idAttr).append('<li class="comment-line"><a data-user="' + specificComment.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="unfollow-user">unfollow</a></li>');
+                $("#" + idAttr).append('<li class="comment-line"><a data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a data-user="' + specificComment.user_id + '" href="/unfollow/comment/' + specificComment.id + '" class="update-following unfollow-user">unfollow</a></li>');
               } else if(data == -2) {
                 $("#" + idAttr).append('<li class="comment-line"><a href="users/sign_in" class="follow-text-sign-up">' + specificComment.body + '</a>  <a href="/users/sign_in" class="follow-user-sign-up">follow</a></li>');
               } 
               else {
-                $("#" + idAttr).append('<li class="comment-line"><a data-user="' + specificComment.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');
+                $("#" + idAttr).append('<li class="comment-line"><a data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a data-user="' + specificComment.user_id + '" href="/follow/comment/' + specificComment.id + '" class="update-following follow-user">follow - ' + specificComment.user_id + '</a></li>');
               }
 
 
