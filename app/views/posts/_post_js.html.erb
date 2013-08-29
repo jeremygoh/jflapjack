@@ -153,7 +153,13 @@
         {
 
           $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/unfollow/comment/' + comment.id + '" class="unfollow-user">unfollow</a></li>');
-        } else {
+        } 
+        else if (data == -2) //following user
+        {
+
+          $('#admin-feeder ul').append('<li class="admin-line"><a href="/users/sign_in" class="follow-text-sign-up">' + comment.body + '</a>  <a href="/users/sign_in" class="follow-user-sign-up">follow</a></li>');
+        } 
+        else {
 
           $('#admin-feeder ul').append('<li class="admin-line"><a ' + comment.post_id + '" data-id="' + comment.post_id + '" class="follow-text">' + comment.body + '</a>  <a href="/follow/comment/' + comment.id + '" class="follow-user">follow - ' + comment.user + '</a></li>');
         }
