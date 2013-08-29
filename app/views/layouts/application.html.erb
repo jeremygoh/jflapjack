@@ -164,12 +164,16 @@
     })
   }
 
-  window.onload = pageLoadFunctions();
+  if(window.location.pathname == '/')
+  {
+        window.onload = pageLoadFunctions();
 
-  function pageLoadFunctions() {
-    commentOverlayOnPageLoad();
-    displayPreview();
-    //followByComment();
+      function pageLoadFunctions() {
+        commentOverlayOnPageLoad();
+        displayPreview();
+        //followByComment();
+      }
+
   }
 
   // get the post id from the id of each selection
