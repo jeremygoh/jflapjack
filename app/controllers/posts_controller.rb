@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
     @posts = []
     if current_user   
-      @followed_users_ids_in_json = current_user.followers.to_json
+      @followed_users_ids_in_json = current_user.followed_users.pluck(:id).to_json
       followed_posts = current_user.followed_posts
 
       #check if there are any followed posts or that you have created a post 

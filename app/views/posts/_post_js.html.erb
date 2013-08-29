@@ -18,7 +18,7 @@
 
   <% if @followed_users_ids_in_json %>
   var users = <%= @followed_users_ids_in_json %>
-
+  console.log("followed users are " +users)
     function addSocketListenerForUser(id) {
       channel = dispatcher.subscribe(id);
       channel.bind('new', function(newPostData) {
@@ -33,6 +33,7 @@
     addSocketListenerForUser(user);
   }) <% end %>
 
+  //now prepends a post to the container!!!
   function appendPost(post) {
 
     var outer = $("<div id='post-" + post.id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
@@ -61,7 +62,7 @@
 
     total = $(outer).append(outer_body.append(post_body)).append(caption).append(comment_overlay).append(single_comment);
 
-    $('#iso-container').isotope('insert', total)
+    $('#iso-container').prepend(total).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
     overlayHover();
 
     var id = post.id
