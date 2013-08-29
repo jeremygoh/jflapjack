@@ -85,6 +85,7 @@
         sliceNumber = 0
       }
       clippedComments = comments.slice(sliceNumber) 
+      console.log(clippedComments)
       //console.log(idAttr.split("-").pop())//clippedComments[0])
       //console.log(clippedComments)
       $(clippedComments).each(function() {
@@ -97,14 +98,14 @@
             //callback
             if (data == -1) {
               // alert("-1")
-              $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="update-following follow-text">' + specificComment.body + '</a> </li>');
+             $("#post-"+specificComment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="update-following follow-text">' + specificComment.body + '</a> </li>');
             } else if (data == 1) //following user
             {
               // alert("1")
-              $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="update-following unfollow-user">unfollow</a></li>');
+              $("#post-"+specificComment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="update-following unfollow-user">unfollow</a></li>');
             } else {
               // alert("0")
-              $("#" + specificComment.post_id).append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="update-following follow-user">follow - ' + specificComment.user_id + '</a></li>');
+              $("#post-"+specificComment.post_id).find('#post-feeder ul').append('<li class="comment-line"><a data-user="' + post.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="update-following follow-user">follow - ' + specificComment.user_id + '</a></li>');
             }
             //follow by comment
             $('a.follow-user').unbind("click").on('click', function(event) {
