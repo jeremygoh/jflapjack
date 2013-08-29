@@ -68,7 +68,7 @@
     var id = post.id
 
     $.get("/posts/" + id + "/last_five_comments", function(comments) {
-
+      console.log(comments)
       // var totalHeight = bodyHeight1+captionHeight;
       var bodyHeight1 = $("#post-" + id).find('.post-body-photo').outerHeight(true) || $("#post-" + id).find('.post-body-link').outerHeight(true) || $("#post-" + id).find('.post-body-video').outerHeight(true) || $("#post-" + id).find('.post-body-note').outerHeight(true);
 
@@ -204,7 +204,7 @@
                 $.post(address, function(someresponse) {
                   alert("DYNAMIC UNFOLLOW")
                   tester1 = someresponse;
-                  $('#iso-container').find('[data-user="1"]').not('a').remove()
+                  $('#iso-container').find('[data-user="' + userID +'"]').not('a').remove()
                       $("#iso-container").isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
                   // if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
                   //   $.post("/unfollow/comment/" + commentID, function(response) {})
