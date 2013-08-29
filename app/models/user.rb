@@ -22,11 +22,13 @@ class User < ActiveRecord::Base
   end
   
   def follow(user_id)
-    user = User.find(user_id)
-    unless self.followers.include?(user)
-        self.followers << user
-        self.save
+    person_i_want_to_follow = User.find(user_id)
+    
+    unless person_i_want_to_follow.followers.include?(self)
+      person_i_want_to_follow.followers << self
+      person_i_want_to_follow.save
     end
+
   end
 
   def follow_user_by_comment(comment_id)
