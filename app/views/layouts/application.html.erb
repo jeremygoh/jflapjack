@@ -132,64 +132,106 @@
             success: function(data) {
               //callback
               if (data == -1) {
-                $("#" + idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a> </li>');
+                $("#" + idAttr).append('<li class="comment-line"><a data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a> </li>');
               } else if (data == 1) //following user
               {
-                $("#" + idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="unfollow-user">unfollow</a></li>');
+                $("#" + idAttr).append('<li class="comment-line"><a data-user="' + specificComment.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/unfollow/comment/' + specificComment.id + '" class="unfollow-user">unfollow</a></li>');
               } else if(data == -2) {
                 $("#" + idAttr).append('<li class="comment-line"><a href="users/sign_in" class="follow-text-sign-up">' + specificComment.body + '</a>  <a href="/users/sign_in" class="follow-user-sign-up">follow</a></li>');
               } 
               else {
-                $("#" + idAttr).append('<li class="comment-line"><a ' + specificComment.post_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');
+                $("#" + idAttr).append('<li class="comment-line"><a data-user="' + specificComment.user_id + '" data-id="' + specificComment.post_id + '" class="follow-text">' + specificComment.body + '</a>  <a href="/follow/comment/' + specificComment.id + '" class="follow-user">follow - ' + specificComment.user_id + '</a></li>');
               }
 
 
               //adds event listener to follow links on both overlay comments and admin comments
 
-              //follow by comment
-              $('a.follow-user').unbind("click").on('click', function(event) {
-                event.preventDefault();
-                //alert("skjfhksdjhfsdkjfhsdkfjh")
-                var address = $(this).attr('href');
-                var commentID = $(this).attr('href').split("/").pop();
-                // console.log(commentID)
-                $.post(address, function(someresponse) {
-                  tester1 = someresponse;
-                  if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
-                    $.get("/follow/user_from_comment/" + commentID, function(response) {
-                      var user = response.user_id.toString();
-                      addSocketListenerForUser(user.toString());
-                      addLastFivePosts(user);
+              $('a.update-following').unbind("click").on('click', function(event) 
+              {
+                  event.preventDefault();
+                  var address = $(this).attr('href');
+                  var commentID = $(this).attr('href').split("/").pop();
+                  var userID = $(this).data('user')
+
+                  if ($(this).hasClass('follow-user')) 
+                  {
+
+                    $.post(address, function(someresponse) {
+                      tester1 = someresponse;
+                      if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
+                        alert("PAGE FOLLOW")
+                        $.get("/follow/user_from_comment/" + commentID, function(response) {
+                          var user = response.user_id.toString();
+                          addSocketListenerForUser(user.toString());
+                          addLastFivePosts(user);
+                          //change text to followed
+                        })
+                      }
+                      $('.follow-user[data-user="' + userID + '"]').text("unfollow").attr("href", "/unfollow/comment/" + commentID).attr('class', 'update-following unfollow-user')
+                    })
+                  } else {
+                    $.post(address, function(someresponse) {
+                      alert("PAGE UNFOLLOW")
+                      tester1 = someresponse;
+                      // if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
+                        // $.post("/unfollow/comment/" + commentID, function(response) {})
+                      // }
+                      $('.unfollow-user[data-user="' + userID + '"]').text("follow-" + userID).attr("href", "/follow/comment/" + commentID).attr('class', 'update-following follow-user')
                     })
                   }
-                })
-                this.remove();
               })
 
 
-              //same as above for unfollow
+              //follow by comment
+              // $('a.follow-user').unbind("click").on('click', function(event) {
+              //   alert("page load follow");
+              //   event.preventDefault();
+              //   //alert("skjfhksdjhfsdkjfhsdkfjh")
+              //   var address = $(this).attr('href');
+              //   var commentID = $(this).attr('href').split("/").pop();
+              //   var userID = $(this).data('user')
+              //   // console.log(commentID)
+              //   $.post(address, function(someresponse) {
+              //     tester1 = someresponse;
+              //     if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
+              //       $.get("/follow/user_from_comment/" + commentID, function(response) {
+              //         var user = response.user_id.toString();
+              //         addSocketListenerForUser(user.toString());
+              //         addLastFivePosts(user);
+              //       })
+              //     }
+              //   })
+              //   $('.follow-user[data-user="' + userID + '"]').text("unfollow").attr("href", "/unfollow/comment/" + commentID).attr('class','unfollow-user')
+               
+              // })
 
 
-                  $('a.unfollow-user').unbind("click").on('click', function(event) {
-                event.preventDefault();
-                //alert("skjfhksdjhfsdkjfhsdkfjh")
-                var address = $(this).attr('href');
-                var commentID = $(this).attr('href').split("/").pop();
-                // console.log(commentID)
-                $.post(address, function(someresponse) {
-                  tester1 = someresponse;
-                  if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
+              // //same as above for unfollow
 
-                    //////****need to change the code below to remove event listener and remove that user's posts from index!
 
-                    // $.get("/unfollow/user_from_comment/" + commentID, function(response) {
-                    //   var user = response.user_id.toString();
-                    //   addSocketListenerForUser(user.toString());
-                    //   addLastFivePosts(user);
-                    // })
-                  }
-                })
-              })
+              //     $('a.unfollow-user').unbind("click").on('click', function(event) {
+              //   alert("page load unfollow");
+              //   event.preventDefault();
+              //   //alert("skjfhksdjhfsdkjfhsdkfjh")
+              //   var address = $(this).attr('href');
+              //   var commentID = $(this).attr('href').split("/").pop();
+              //   var userID = $(this).data('user')
+              //   // console.log(commentID)
+              //   $.post(address, function(someresponse) {
+              //     tester1 = someresponse;
+              //     if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
+
+              //       //////****need to change the code below to remove event listener and remove that user's posts from index!
+
+              //       // $.get("/unfollow/user_from_comment/" + commentID, function(response) {
+              //       //   var user = response.user_id.toString();
+              //       //   addSocketListenerForUser(user.toString());
+              //       //   addLastFivePosts(user);
+              //       // })
+              //     }
+              //   })
+              //   $('.unfollow-user[data-user="' + userID + '"]').text("follow-" + userID).attr("href", "/follow/comment/" + commentID).attr('class', 'follow-user')
+              // })
 
 
 

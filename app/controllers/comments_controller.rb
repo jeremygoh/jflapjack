@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       @post.time += 3600 if @post.time > 100000
       @post.save
       puts @post.time.inspect
-      websocket[:comment].trigger 'new',{post_id: comment.post.id, id: comment.id, body: comment.body, user: comment.user.id}
+      websocket[:comment].trigger 'new',{post_id: comment.post.id, id: comment.id, body: comment.body, user: comment.user.id, user_id: comment.user.id}
       flash[:alert] = "New commment added."
      else
       flash[:alert] = "Failed to save comment"

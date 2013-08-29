@@ -50,13 +50,13 @@
 				<% @last_comments.each do |comment| %>
 				<li>
           <% if !current_user %>
-            <a href="/users/sign_in" data-id="<%=comment.post.id%>" class="follow-text-sign-up"><%= comment.body %></a> <a href="/users/sign_in" class="follow-user-sign-up">follow-<%= comment.user.id %></a>
+            <a href="/users/sign_in" data-id="<%=comment.post.id%>" class="follow-text-sign-up"><%= comment.body %></a> <a href="/users/sign_in" class="update-following follow-user-sign-up">follow-<%= comment.user.id %></a>
 					<% elsif comment.user == current_user %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> 
 					<% elsif current_user.following?(comment.user) %>
-						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a href="/unfollow/comment/<%= comment.id %>" class="unfollow-user">unfollow</a>
+						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a data-user=<%= comment.user.id %> href="/unfollow/comment/<%= comment.id %>" class="update-following unfollow-user">unfollow</a>
 					<% else %>
-						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a href="/follow/comment/<%= comment.id %>" class="follow-user">follow-<%= comment.user.id %></a>
+						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a data-user=<%= comment.user.id %> href="/follow/comment/<%= comment.id %>" class="update-following follow-user">follow-<%= comment.user.id %></a>
 					<% end %>
 				</li>
 				<% end %>

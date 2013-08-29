@@ -31,7 +31,7 @@ class FollowsController < ApplicationController
         user = User.find(params[:id])
         if user == current_user
           is_followed = -1 
-        elsif user.following?(current_user)
+        elsif current_user.following?(user)
           is_followed = 1
         else
           is_followed = 0
