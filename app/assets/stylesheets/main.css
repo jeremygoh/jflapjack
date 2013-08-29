@@ -93,6 +93,15 @@ div.post:hover input[type=text]{
 .unfollow-user{
   float: right;
 }
+
+.follow-user-sign-up{
+  float: right;
+}
+
+.follow-user-sign-up{
+  float: right;
+}
+
 a:hover.follow-text{
   text-decoration:none;
 }

@@ -49,7 +49,9 @@
 			<ul class='unstyled'>
 				<% @last_comments.each do |comment| %>
 				<li>
-					<% if comment.user == current_user %>
+          <% if !current_user %>
+            <a href="/users/sign_in" data-id="<%=comment.post.id%>" class="follow-text-sign-up"><%= comment.body %></a> <a href="/users/sign_in" class="follow-user-sign-up">follow-<%= comment.user.id %></a>
+					<% elsif comment.user == current_user %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> 
 					<% elsif current_user.following?(comment.user) %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a href="/unfollow/comment/<%= comment.id %>" class="unfollow-user">unfollow</a>
