@@ -13,7 +13,7 @@ class FollowsController < ApplicationController
       
       if current_user
           following = Comment.find(params[:id]).user
-          current_user.followers.delete(following)
+          current_user.unfollow!(following)
           current_user.save
       end
 
@@ -30,7 +30,7 @@ class FollowsController < ApplicationController
     user = User.find(params[:id])
     if user == current_user
       is_followed = -1 
-    elsif user.followers.include?(current_user)
+    elsif user.following?(current_user)
       is_followed = 1
     else
       is_followed = 0

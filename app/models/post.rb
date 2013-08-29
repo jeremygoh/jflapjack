@@ -16,10 +16,10 @@ class Post < ActiveRecord::Base
     self.comments.last.body unless self.comments.empty?
   end
 
-  def self.followed_by(user)
-  	followed_user_ids = user.followers.pluck(:id)	
-    where("user_id IN (:user_ids)", user_ids: (followed_user_ids << user.id))
-  end
+  # def self.followed_by(user)
+  # 	followed_user_ids = user.followers.pluck(:id)	
+  #   where("user_id IN (:user_ids)", user_ids: (followed_user_ids << user.id))
+  # end
 
 end
 

@@ -51,7 +51,7 @@
 				<li>
 					<% if comment.user == current_user %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> 
-					<% elsif comment.user.followers.include? current_user %>
+					<% elsif current_user.following?(comment.user) %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a href="/unfollow/comment/<%= comment.id %>" class="unfollow-user">unfollow</a>
 					<% else %>
 						<a href="/posts/<%= comment.post.id %>" data-id="<%=comment.post.id%>" class="follow-text"><%= comment.body %></a> <a href="/follow/comment/<%= comment.id %>" class="follow-user">follow-<%= comment.user.id %></a>
