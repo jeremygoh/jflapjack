@@ -24,7 +24,7 @@
       channel.bind('new', function(newPostData) {
         // tester = $.parseJSON(newPostData)
         console.log(newPostData);
-        appendPost($.parseJSON(newPostData));
+        appendPost(newPostData);
 
       });
     }
