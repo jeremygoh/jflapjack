@@ -125,6 +125,8 @@
                     addLastFivePosts(user);
                   })
                 }
+                    $('#iso-container').prepend(total).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
+
               })
             })
           }
