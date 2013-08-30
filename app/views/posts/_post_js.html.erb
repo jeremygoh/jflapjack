@@ -22,7 +22,8 @@
     function addSocketListenerForUser(id) {
       channel = dispatcher.subscribe(id);
       channel.bind('new', function(newPostData) {
-        tester = $.parseJSON(newPostData)
+        // tester = $.parseJSON(newPostData)
+        console.log(newPostData);
         appendPost($.parseJSON(newPostData));
 
       });

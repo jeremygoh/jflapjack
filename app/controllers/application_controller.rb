@@ -12,11 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def websocket 
-    if defined?(WebsocketRails)
-      WebsocketRails
-    else
-      Pusher
-    end
+    Pusher
   end
   
 protected
