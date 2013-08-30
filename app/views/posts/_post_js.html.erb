@@ -36,7 +36,7 @@
 
   //now prepends a post to the container!!!
   function appendPost(post) {
-    //console.log(post)
+    console.log(post)
     var outer = $("<div id='post-" + post.id + "' data-user='" + post.user_id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
     var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
 
