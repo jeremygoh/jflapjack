@@ -117,7 +117,7 @@ $('a.update-following').unbind("click").on('click', function(event)
                     $.post(address, function(someresponse) {
                       tester1 = someresponse;
                       if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
-                        alert("PAGE FOLLOW")
+                        // alert("PAGE FOLLOW")
                         $.get("/follow/user_from_comment/" + commentID, function(response) {
                           var user = response.user_id.toString();
                           addSocketListenerForUser(user.toString());
@@ -129,7 +129,7 @@ $('a.update-following').unbind("click").on('click', function(event)
                     })
                   } else {
                     $.post(address, function(someresponse) {
-                      alert("PAGE UNFOLLOW")
+                      // alert("PAGE UNFOLLOW")
                       tester1 = someresponse;
                       $('#iso-container').find('[data-user="' + userID +'"]').not('a').remove()
                       $("#iso-container").isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });

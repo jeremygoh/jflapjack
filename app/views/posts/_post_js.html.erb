@@ -216,7 +216,7 @@
                 $.post(address, function(someresponse) {
                   tester1 = someresponse;
                   if (someresponse.already_following != "1") { //won't add a socket listener or add new posts if already following that user
-                    alert("DYNAMIC FOLLOW")
+                    // alert("DYNAMIC FOLLOW")
                     $.get("/follow/user_from_comment/" + commentID, function(response) {
                       var user = response.user_id.toString();
                       addSocketListenerForUser(user.toString());
@@ -228,7 +228,7 @@
                 })
               } else {
                 $.post(address, function(someresponse) {
-                  alert("DYNAMIC UNFOLLOW")
+                  // alert("DYNAMIC UNFOLLOW")
                   tester1 = someresponse;
                   $('#iso-container').find('[data-user="' + userID +'"]').not('a').remove()
                       $("#iso-container").isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
