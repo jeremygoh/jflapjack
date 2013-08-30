@@ -66,6 +66,10 @@
     $('#iso-container').prepend(total).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
     overlayHover();
 
+    if(post.type == 'Photo') {
+      window.setTimeout(function() { $('#iso-container').isotope( 'reLayout' ) }, 1000);
+    }
+
     var id = post.id
 
     $.get("/posts/" + id + "/last_five_comments", function(comments) {
@@ -125,8 +129,6 @@
                     addLastFivePosts(user);
                   })
                 }
-                    $('#iso-container').prepend(total).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' });
-
               })
             })
           }
