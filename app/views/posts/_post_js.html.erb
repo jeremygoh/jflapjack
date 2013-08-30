@@ -18,12 +18,12 @@
 
   <% if @followed_users_ids_in_json %>
   var users = <%= @followed_users_ids_in_json %>
-  console.log("followed users are " +users)
+  // console.log("followed users are " +users)
     function addSocketListenerForUser(id) {
       channel = dispatcher.subscribe(id);
       channel.bind('new', function(newPostData) {
         // tester = $.parseJSON(newPostData)
-        console.log(newPostData);
+        // console.log(newPostData);
         appendPost(newPostData);
 
       });
@@ -36,7 +36,7 @@
 
   //now prepends a post to the container!!!
   function appendPost(post) {
-    console.log(post)
+    // console.log(post)
     var outer = $("<div id='post-" + post.id + "' data-user='" + post.user_id + "' class='post post-" + post.type.toLowerCase() + " width2 height2' data-category='" + post.type.toLowerCase() + "' ></div>")
     var outer_body = $("<div id='body-" + post.id + "' class='post-body-" + post.type.toLowerCase() + "'></div>")
 
@@ -69,7 +69,7 @@
     var id = post.id
 
     $.get("/posts/" + id + "/last_five_comments", function(comments) {
-      console.log(comments)
+      // console.log(comments)
       // var totalHeight = bodyHeight1+captionHeight;
       var bodyHeight1 = $("#post-" + id).find('.post-body-photo').outerHeight(true) || $("#post-" + id).find('.post-body-link').outerHeight(true) || $("#post-" + id).find('.post-body-video').outerHeight(true) || $("#post-" + id).find('.post-body-note').outerHeight(true);
 
@@ -86,7 +86,7 @@
         sliceNumber = 0
       }
       clippedComments = comments.slice(sliceNumber) 
-      console.log(clippedComments)
+      // console.log(clippedComments)
       //console.log(idAttr.split("-").pop())//clippedComments[0])
       //console.log(clippedComments)
       $(clippedComments).each(function() {
