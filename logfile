@@ -5,3 +5,4 @@ LOG:  redo is not required
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 FATAL:  role "dev" does not exist
+FATAL:  role "dev" does not exist
