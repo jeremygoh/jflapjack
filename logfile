@@ -1,0 +1,7 @@
+LOG:  database system was interrupted; last known up at 2014-01-14 20:36:25 PST
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  record with zero length at 0/17CFBE8
+LOG:  redo is not required
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  role "dev" does not exist
